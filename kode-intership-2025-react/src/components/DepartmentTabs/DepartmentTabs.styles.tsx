@@ -46,4 +46,10 @@ export const TabsContent = styled.span<{
     transform-origin: center;
     transition: transform 0.2s ease-out;
   }
+
+  &:hover {
+    &::after {
+      transform: scaleX(${props => (props.$isActive ? 1 : 0.2)});
+    }
+  }
 `;

@@ -19,6 +19,19 @@ export const Modal = styled.div`
   background-color: white;
   padding-bottom: 8px;
   border-radius: 20px;
+
+  animation: fade-in-scale 0.3s ease-in-out;
+
+  @keyframes fade-in-scale {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 `;
 
 export const ModalContent = styled.div`

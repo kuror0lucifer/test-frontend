@@ -6,12 +6,13 @@ import {
   UserText,
   UserWrapper,
 } from './UserCard.styles';
+import { departments, DepartmentsKeys } from '../../types/departments';
 
 interface UserCardProps {
   avatar: string;
   name: string;
   nickName: string;
-  department: string;
+  department: DepartmentsKeys;
 }
 
 export const UserCard: FC<UserCardProps> = ({
@@ -51,7 +52,7 @@ export const UserCard: FC<UserCardProps> = ({
           $lineHeight={16}
           fontWeight={400}
         >
-          {department}
+          {departments[department]}
         </UserText>
       </UserContentContainer>
     </UserWrapper>

@@ -5,7 +5,7 @@ export const departments = {
   design: 'Дизайн',
   management: 'Менеджмент',
   qa: 'QA',
-  backOffice: 'Бэк-офис',
+  back_office: 'Бэк-офис',
   frontend: 'Frontend',
   hr: 'HR',
   pr: 'PR',
