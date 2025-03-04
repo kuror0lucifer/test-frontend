@@ -17,9 +17,9 @@ export const Button: FC<Partial<ButtonProps>> = ({
   return (
     <CloseButton
       onClick={onClose}
-      position={position}
-      top={top}
-      right={right}
+      $position={position}
+      $top={top}
+      $right={right}
     >
       <Icon src='/close-button.svg' />
     </CloseButton>

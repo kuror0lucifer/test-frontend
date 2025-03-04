@@ -2,20 +2,22 @@ import { FC, useEffect } from 'react';
 import { ContentWrapper } from './MainContent.styles';
 import { ContentSkeleton } from '../ContentSkeleton';
 import { useQuery } from '@tanstack/react-query';
-import { fetchAllUsers } from '../../api/service';
+import { fetchAllUsers, fetchUsersByDepartment } from '../../api/service';
 import User from '../../types/user.type';
 import { UserCard } from '../UserCard';
 import blankAvatar from '../../constants/blankAvatar';
 import { EmptySearchContent } from '../EmptySearchContent';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUsersData } from '../../redux/users/slice';
 import { Error } from '../Error';
+import { selectActiveTab } from '../../redux/activeTab/selectors';
 
 export const MainContent: FC = () => {
   const dispatch = useDispatch();
+  const activeTab = useSelector(selectActiveTab);
   const { data, error, isLoading, refetch, isFetching } = useQuery({
-    queryKey: ['error'],
-    queryFn: fetchAllUsers,
+    queryKey: ['users', activeTab],
+    queryFn: () => fetchUsersByDepartment(activeTab),
   });
 
   useEffect(() => {
@@ -27,7 +29,7 @@ export const MainContent: FC = () => {
   return (
     <ContentWrapper>
       {isLoading || isFetching ? (
-        Array.from({ length: 20 }).map((_, index) => (
+        Array.from({ length: data?.length || 10 }).map((_, index) => (
           <ContentSkeleton key={index} />
         ))
       ) : error ? (

@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { CloseButtonProps } from './props.type';
 
 export const CloseButton = styled.button.attrs<CloseButtonProps>({})`
-  position: ${props => (props.position ? props.position : 'static')};
-  top: ${props => (props.top ? `${props.top}px` : '0')};
-  right: ${props => (props.right ? `${props.right}px` : '0')};
+  position: ${props => (props.$position ? props.$position : 'static')};
+  top: ${props => (props.$top ? `${props.$top}px` : '0')};
+  right: ${props => (props.$right ? `${props.$right}px` : '0')};
   width: 24px;
   height: 24px;
   background-color: #f7f7f8;

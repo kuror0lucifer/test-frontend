@@ -1,13 +1,21 @@
 import { FC, useState } from 'react';
 import { TabsContent, TabsWrapper } from './DepartmentTabs.styles';
 import { departments, DepartmentsKeys } from '../../types/departments';
+import { useDispatch, useSelector } from 'react-redux';
+import { setActiveTab } from '../../redux/activeTab/slice';
+import { selectActiveTab } from '../../redux/activeTab/selectors';
 
 export const DepartmentTabs: FC = () => {
-  const [activeTab, setActiveTab] = useState<DepartmentsKeys | null>('all');
+  const dispatch = useDispatch();
+  const activeTab = useSelector(selectActiveTab);
+  const [currentTab, setCurrentTab] = useState<DepartmentsKeys | null>(
+    activeTab
+  );
   const tabs = Object.keys(departments) as DepartmentsKeys[];
 
   const handleTabClick = (department: DepartmentsKeys) => {
-    setActiveTab(prev => (prev === department ? null : department));
+    setCurrentTab(prev => (prev === department ? null : department));
+    dispatch(setActiveTab(department));
   };
 
   return (
@@ -15,7 +23,7 @@ export const DepartmentTabs: FC = () => {
       {tabs.map((key, index) => (
         <TabsContent
           key={index}
-          $isActive={activeTab === key}
+          $isActive={currentTab === key}
           onClick={() => handleTabClick(key)}
         >
           {departments[key]}

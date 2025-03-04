@@ -22,7 +22,9 @@ export const fetchAllUsers = async () => {
 
 export const fetchUsersByDepartment = async (department: string) => {
   try {
-    const { data } = await apiService.get(`?__example=${department}`);
+    const { data } = await apiService.get(
+      `${API_BASE_URL}?__example=${department}`
+    );
 
     return data.items;
   } catch (err) {
