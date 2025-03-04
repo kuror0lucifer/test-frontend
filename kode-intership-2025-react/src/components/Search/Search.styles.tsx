@@ -1,5 +1,6 @@
-import { ImgHTMLAttributes, InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes } from 'react';
 import styled from 'styled-components';
+import { IconProps } from './props.type';
 
 export const SearchContainer = styled.div`
   max-width: 100%;
@@ -23,13 +24,17 @@ export const SearchWrapper = styled.div`
 
 export const Input = styled.input.attrs<InputHTMLAttributes<HTMLInputElement>>({
   type: 'text',
-  placeholder: 'Введите имя, тег, почту...',
+  placeholder: 'Введи имя, тег, почту...',
 })`
   width: 100%;
   height: auto;
   background-color: transparent;
   border: none;
   outline: none;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #050510;
 
   &::placeholder {
     color: #c3c3c6;
@@ -37,9 +42,14 @@ export const Input = styled.input.attrs<InputHTMLAttributes<HTMLInputElement>>({
     font-size: 15px;
     line-height: 20px;
   }
+
+  &:focus {
+    caret-color: #6534ff;
+  }
 `;
 
-export const Icon = styled.img.attrs<ImgHTMLAttributes<HTMLImageElement>>({})`
+export const Icon = styled.img.attrs<IconProps>({})`
   width: ${props => props.sizes}px;
   height: ${props => props.sizes}px;
+  cursor: ${props => props.cursor};
 `;
