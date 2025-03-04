@@ -9,11 +9,12 @@ import blankAvatar from '../../constants/blankAvatar';
 import { EmptySearchContent } from '../EmptySearchContent';
 import { useDispatch } from 'react-redux';
 import { setUsersData } from '../../redux/users/slice';
+import { Error } from '../Error';
 
 export const MainContent: FC = () => {
   const dispatch = useDispatch();
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['all'],
+  const { data, error, isLoading, refetch, isFetching } = useQuery({
+    queryKey: ['error'],
     queryFn: fetchAllUsers,
   });
 
@@ -25,20 +26,25 @@ export const MainContent: FC = () => {
 
   return (
     <ContentWrapper>
-      {!data?.length && <EmptySearchContent />}
-      {isLoading
-        ? Array.from({ length: 20 }).map((_, index) => (
-            <ContentSkeleton key={index} />
-          ))
-        : data.map((user: User) => (
-            <UserCard
-              key={user.id}
-              avatar={blankAvatar}
-              department={user.department}
-              name={`${user.firstName} ${user.lastName}`}
-              nickName={user.nickName}
-            />
-          ))}
+      {isLoading || isFetching ? (
+        Array.from({ length: 20 }).map((_, index) => (
+          <ContentSkeleton key={index} />
+        ))
+      ) : error ? (
+        <Error onRetry={refetch} />
+      ) : data?.length === 0 ? (
+        <EmptySearchContent />
+      ) : (
+        data?.map((user: User) => (
+          <UserCard
+            key={user.id}
+            avatar={blankAvatar}
+            department={user.department}
+            name={`${user.firstName} ${user.lastName}`}
+            nickName={user.nickName}
+          />
+        ))
+      )}
     </ContentWrapper>
   );
 };
