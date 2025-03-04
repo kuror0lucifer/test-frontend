@@ -5,6 +5,8 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchAllUsers } from '../../api/service';
 import User from '../../types/user.type';
 import { UserCard } from '../UserCard';
+import blankAvatar from '../../constants/blankAvatar';
+import { EmptySearchContent } from '../EmptySearchContent';
 
 export const MainContent: FC = () => {
   const { data, isLoading, error } = useQuery({
@@ -12,10 +14,9 @@ export const MainContent: FC = () => {
     queryFn: fetchAllUsers,
   });
 
-  const blankAvatar = '/goose.png';
-
   return (
     <ContentWrapper>
+      {!data.length && <EmptySearchContent />}
       {isLoading
         ? Array.from({ length: 20 }).map((_, index) => (
             <ContentSkeleton key={index} />
