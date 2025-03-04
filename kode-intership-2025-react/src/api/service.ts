@@ -2,7 +2,7 @@ import axios from 'axios';
 import API_BASE_URL from '../constants/apiBaseUrl';
 
 const apiService = axios.create({
-  baseURL: API_BASE_URL,
+  // baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -10,9 +10,9 @@ const apiService = axios.create({
 
 export const fetchAllUsers = async () => {
   try {
-    const { data } = await apiService.get('?__example=all');
+    const { data } = await apiService.get(`${API_BASE_URL}?__example=all`);
 
-    return data;
+    return data.items;
   } catch (err) {
     if (err instanceof Error) {
       return err.message;
@@ -22,9 +22,9 @@ export const fetchAllUsers = async () => {
 
 export const fetchUsersByDepartment = async (department: string) => {
   try {
-    const { data } = await apiService.get(`?__expample=${department}`);
+    const { data } = await apiService.get(`?__example=${department}`);
 
-    return data;
+    return data.items;
   } catch (err) {
     if (err instanceof Error) {
       return err.message;
@@ -34,9 +34,9 @@ export const fetchUsersByDepartment = async (department: string) => {
 
 export const fetchDynamicUsers = async () => {
   try {
-    const { data } = await apiService.get('?__dynamic=true');
+    const { data } = await apiService.get(`${API_BASE_URL}?__dynamic=true`);
 
-    return data;
+    return data.items;
   } catch (err) {
     if (err instanceof Error) {
       return err.message;
@@ -44,11 +44,11 @@ export const fetchDynamicUsers = async () => {
   }
 };
 
-export const fatchUsersError = async () => {
+export const fetchUsersError = async () => {
   try {
     const { data } = await apiService.get('?__code=500&__dynamic=true');
 
-    return data;
+    return data.items;
   } catch (err) {
     if (err instanceof Error) {
       return err.message;

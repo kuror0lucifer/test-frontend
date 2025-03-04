@@ -9,6 +9,15 @@ export const TabsWrapper = styled.div`
   padding-left: 16px;
   padding-top: 8px;
   border-bottom: 1px solid #c3c3c6;
+  overflow-x: auto;
+  white-space: nowrap;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  z-index: 1000;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const TabsContent = styled.span<{
@@ -30,7 +39,7 @@ export const TabsContent = styled.span<{
     content: '';
     position: absolute;
     left: 0;
-    bottom: -2px;
+    bottom: 0;
     width: 100%;
     height: 2px;
     background-color: #6534ff;
