@@ -4,6 +4,9 @@ const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
     margin: 0;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
   body {
@@ -13,6 +16,12 @@ const GlobalStyle = createGlobalStyle`
     color: #050510;
 
     margin-top: 8px;
+
+    
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
   }
 `;
 

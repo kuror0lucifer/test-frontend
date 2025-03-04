@@ -2,7 +2,7 @@ import { FC, useEffect } from 'react';
 import { ContentWrapper } from './MainContent.styles';
 import { ContentSkeleton } from '../ContentSkeleton';
 import { useQuery } from '@tanstack/react-query';
-import { fetchAllUsers, fetchUsersByDepartment } from '../../api/service';
+import { fetchUsersByDepartment } from '../../api/service';
 import User from '../../types/user.type';
 import { UserCard } from '../UserCard';
 import blankAvatar from '../../constants/blankAvatar';
