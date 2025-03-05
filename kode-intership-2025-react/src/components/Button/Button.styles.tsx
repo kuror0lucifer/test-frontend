@@ -6,7 +6,6 @@ export const CloseButton = styled.button.attrs<ButtonProps>({})`
   position: ${props => (props.$position ? props.$position : 'static')};
   top: ${props => (props.$top ? `${props.$top}px` : '0')};
   right: ${props => (props.$right ? `${props.$right}px` : '0')};
-
   width: 24px;
   height: 24px;
   background-color: #f7f7f8;
