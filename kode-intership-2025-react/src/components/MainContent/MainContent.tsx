@@ -11,11 +11,13 @@ import { setUsersData } from '../../redux/users/slice';
 import { Error } from '../Error';
 import { selectActiveTab } from '../../redux/activeTab/selectors';
 import { selectAllFilteredUsers } from '../../redux/users/selectors';
+import { selectCurrentSorting } from '../../redux/sorting/selectors';
 
 export const MainContent: FC = () => {
   const dispatch = useDispatch();
   const activeTab = useSelector(selectActiveTab);
   const users = useSelector(selectAllFilteredUsers);
+  const currentSorting = useSelector(selectCurrentSorting);
   const { data, error, isLoading, refetch, isFetching } = useQuery({
     queryKey: ['users'],
     queryFn: fetchDynamicUsers,
@@ -32,9 +34,19 @@ export const MainContent: FC = () => {
 
   const filteredUsers = useMemo(() => {
     if (!users || !Array.isArray(users)) return [];
-    if (activeTab === 'all') return users;
-    return users.filter((user: User) => user.department === activeTab);
-  }, [users, activeTab]);
+
+    let result = [...users];
+
+    if (activeTab !== 'all') {
+      result = result.filter((user: User) => user.department === activeTab);
+    }
+
+    if (currentSorting === 'alphabet') {
+      result.sort((a, b) => a.lastName.localeCompare(b.lastName));
+    }
+
+    return result;
+  }, [users, activeTab, currentSorting]);
 
   return (
     <ContentWrapper>

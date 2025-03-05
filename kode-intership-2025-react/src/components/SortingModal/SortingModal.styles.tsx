@@ -77,6 +77,7 @@ export const InputLabel = styled.label`
   font-weight: 500;
   line-height: 20px;
   color: #050510;
+  cursor: pointer;
 `;
 
 export const InputContent = styled.div`

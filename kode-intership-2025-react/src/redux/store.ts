@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import usersReducer from './users/slice';
 import activeTabReducer from './activeTab/slice';
+import sortingReducer from './sorting/slice';
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
 
@@ -9,15 +10,25 @@ const activeTabPersistConfig = {
   storage,
 };
 
+const sortingPersistConfig = {
+  key: 'sorting',
+  storage,
+};
+
 const persistedActiveTabReducer = persistReducer(
   activeTabPersistConfig,
   activeTabReducer
+);
+const persistedSortingReducer = persistReducer(
+  sortingPersistConfig,
+  sortingReducer
 );
 
 export const store = configureStore({
   reducer: {
     users: usersReducer,
     activeTab: persistedActiveTabReducer,
+    sorting: persistedSortingReducer,
   },
 });
 

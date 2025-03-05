@@ -1,17 +1,12 @@
 import { FC, useEffect, useState } from 'react';
-import {
-  Form,
-  Icon,
-  Input,
-  SearchContainer,
-  SearchWrapper,
-} from './Search.styles';
+import { Icon, Input, SearchContainer, SearchWrapper } from './Search.styles';
 import { SortingModal } from '../SortingModal';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAllUsers } from '../../redux/users/selectors';
-import { selectActiveTab } from '../../redux/activeTab/selectors';
 import { setFilteredUsers } from '../../redux/users/slice';
+import { setSorting } from '../../redux/sorting/slice';
+import { selectCurrentSorting } from '../../redux/sorting/selectors';
 
 interface IFormInputs {
   query: string;
@@ -20,6 +15,7 @@ interface IFormInputs {
 export const Search: FC = () => {
   const dispatch = useDispatch();
   const users = useSelector(selectAllUsers);
+  const currentSorting = useSelector(selectCurrentSorting);
   const { register, watch } = useForm<IFormInputs>();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const searchValue = watch('query', '').toLowerCase().trim();
@@ -48,7 +44,12 @@ export const Search: FC = () => {
     return () => clearTimeout(delayDebounce);
   }, [searchValue, users]);
 
-  const openModal = () => setIsOpen(true);
+  const openModal = () => {
+    setIsOpen(true);
+    if (currentSorting === null) {
+      dispatch(setSorting('alphabet'));
+    }
+  };
   const closeModal = () => setIsOpen(false);
 
   return (
