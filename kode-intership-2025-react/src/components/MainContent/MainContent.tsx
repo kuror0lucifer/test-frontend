@@ -1,8 +1,8 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useMemo } from 'react';
 import { ContentWrapper } from './MainContent.styles';
 import { ContentSkeleton } from '../ContentSkeleton';
 import { useQuery } from '@tanstack/react-query';
-import { fetchUsersByDepartment } from '../../api/service';
+import { fetchDynamicUsers } from '../../api/service';
 import User from '../../types/user.type';
 import { UserCard } from '../UserCard';
 import blankAvatar from '../../constants/blankAvatar';
@@ -11,13 +11,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUsersData } from '../../redux/users/slice';
 import { Error } from '../Error';
 import { selectActiveTab } from '../../redux/activeTab/selectors';
+import { selectAllUsers } from '../../redux/users/selectors';
 
 export const MainContent: FC = () => {
   const dispatch = useDispatch();
   const activeTab = useSelector(selectActiveTab);
+  const users = useSelector(selectAllUsers);
   const { data, error, isLoading, refetch, isFetching } = useQuery({
-    queryKey: ['users', activeTab],
-    queryFn: () => fetchUsersByDepartment(activeTab),
+    queryKey: ['users'],
+    queryFn: fetchDynamicUsers,
+    staleTime: 5 * 60 * 1000,
+    refetchInterval: 5 * 60 * 1000,
+    refetchIntervalInBackground: true,
   });
 
   useEffect(() => {
@@ -26,18 +31,24 @@ export const MainContent: FC = () => {
     }
   }, [data, dispatch]);
 
+  const filteredUsers = useMemo(() => {
+    if (!users || !Array.isArray(users)) return [];
+    if (activeTab === 'all') return users;
+    return users.filter((user: User) => user.department === activeTab);
+  }, [users, activeTab]);
+
   return (
     <ContentWrapper>
       {isLoading || isFetching ? (
-        Array.from({ length: data?.length || 10 }).map((_, index) => (
+        Array.from({ length: filteredUsers?.length || 10 }).map((_, index) => (
           <ContentSkeleton key={index} />
         ))
       ) : error ? (
         <Error onRetry={refetch} />
-      ) : data?.length === 0 ? (
+      ) : filteredUsers?.length === 0 ? (
         <EmptySearchContent />
       ) : (
-        data?.map((user: User) => (
+        (filteredUsers || []).map((user: User) => (
           <UserCard
             key={user.id}
             avatar={blankAvatar}
