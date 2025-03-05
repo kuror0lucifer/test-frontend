@@ -23,6 +23,10 @@ export const ProfileContent: FC<ProfileContentProps> = ({
   const formatedPhone = formatPhone(phone);
   const formatedAge = ageForm(age);
 
+  const handleClickPhone = () => {
+    window.location.href = `tel:+7${phone}`;
+  };
+
   return (
     <Wrapper>
       <ContentWrapper $justifyContent='space-between'>
@@ -35,7 +39,13 @@ export const ProfileContent: FC<ProfileContentProps> = ({
       <ContentWrapper $justifyContent='flex-start'>
         <InfoContainer>
           <Icon src='/phone.svg' />
-          <InfoText color='#050510'>{formatedPhone}</InfoText>
+          <InfoText
+            color='#050510'
+            cursor='pointer'
+            onClick={handleClickPhone}
+          >
+            {formatedPhone}
+          </InfoText>
         </InfoContainer>
       </ContentWrapper>
     </Wrapper>
