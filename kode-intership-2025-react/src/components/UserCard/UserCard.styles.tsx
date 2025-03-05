@@ -5,7 +5,7 @@ export const UserWrapper = styled.div`
   width: 343px;
   height: 84px;
   display: flex;
-  justify-content: baseline;
+
   align-items: center;
   gap: 16px;
 `;
@@ -14,7 +14,7 @@ export const UserContentContainer = styled.div`
   width: fit-content;
   height: auto;
   display: flex;
-  justify-content: baseline;
+
   align-items: flex-start;
   gap: 6px;
   flex-direction: column;
@@ -30,9 +30,11 @@ export const UserNameContainer = styled.div`
 
 export const UserAvatar = styled.img.attrs<ImgHTMLAttributes<HTMLImageElement>>(
   {
-    sizes: '72px',
+    width: 72,
+    height: 72,
   }
 )`
+  border-radius: 50%;
   object-fit: fill;
 `;
 

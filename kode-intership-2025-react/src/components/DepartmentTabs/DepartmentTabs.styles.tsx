@@ -4,7 +4,7 @@ export const TabsWrapper = styled.div`
   width: 100%;
   height: auto;
   display: flex;
-  justify-content: baseline;
+
   align-items: flex-start;
   padding-left: 16px;
   padding-top: 8px;
@@ -28,6 +28,7 @@ export const TabsContent = styled.span<{
   padding: 8px 12px;
   color: ${props => (props.$isActive ? '#050510' : '#97979B')};
   font-size: 15px;
+
   font-weight: ${props => (props.$isActive ? 600 : 500)};
   line-height: 20px;
   text-align: center;

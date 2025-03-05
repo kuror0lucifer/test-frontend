@@ -40,7 +40,7 @@ export const ModalContent = styled.div`
   height: auto;
   padding: 24px 16px 0 16px;
   display: flex;
-  justify-content: baseline;
+
   align-items: flex-start;
   flex-direction: column;
   gap: 16px;
@@ -52,6 +52,7 @@ export const ModalTitle = styled.h2`
   line-height: 24px;
   text-align: center;
   color: #050510;
+
   align-self: center;
   margin-bottom: 16px;
 `;
@@ -76,6 +77,7 @@ export const InputLabel = styled.label`
   font-size: 16px;
   font-weight: 500;
   line-height: 20px;
+
   color: #050510;
   cursor: pointer;
 `;
@@ -84,7 +86,7 @@ export const InputContent = styled.div`
   width: 100%;
   height: auto;
   display: flex;
-  justify-content: baseline;
+
   align-items: center;
   gap: 10px;
   padding-bottom: 21px;

@@ -45,6 +45,7 @@ export const ErrorText = styled.span<{
   font-weight: ${props => props.fontWeight};
   line-height: ${props => props.$lineHeight}px;
   text-align: center;
+
   color: ${props => props.color};
   cursor: ${props => props.cursor};
 `;

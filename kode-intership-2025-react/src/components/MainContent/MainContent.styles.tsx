@@ -5,8 +5,8 @@ export const ContentWrapper = styled.div`
   height: auto;
   padding: 16px 16px;
   display: flex;
-  justify-content: baseline;
+
   align-items: flex-start;
-  gap: 12px;
+
   flex-direction: column;
 `;

@@ -8,6 +8,7 @@ export const TopBarAppContainer = styled.div`
 `;
 
 export const TopBarAppTitle = styled.h1`
+  width: fit-content;
   font-weight: 700;
   font-size: 24px;
   line-height: 28px;

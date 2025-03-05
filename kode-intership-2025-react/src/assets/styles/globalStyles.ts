@@ -4,6 +4,7 @@ const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
     margin: 0;
+    letter-spacing: 0;
 
     scrollbar-width: none;
     -ms-overflow-style: none;
