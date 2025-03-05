@@ -10,14 +10,18 @@ export const UserWrapper = styled.div`
   gap: 16px;
 `;
 
-export const UserContentContainer = styled.div`
+export const UserContentContainer = styled.div<{
+  $gap?: number;
+  $flexDirection?: string;
+  $alignItems?: string;
+}>`
   width: fit-content;
   height: auto;
   display: flex;
 
-  align-items: flex-start;
-  gap: 6px;
-  flex-direction: column;
+  align-items: ${props => props.$alignItems || 'flex-start'};
+  gap: ${props => props.$gap || 6}px;
+  flex-direction: ${props => props.$flexDirection || 'column'};
 `;
 
 export const UserNameContainer = styled.div`

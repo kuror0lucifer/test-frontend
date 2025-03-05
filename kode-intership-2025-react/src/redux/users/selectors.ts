@@ -5,8 +5,9 @@ export const selectAllUsers = (state: RootState) => state.users.users;
 export const selectAllFilteredUsers = (state: RootState) =>
   state.users.filteredUsers;
 
-export const selectUserId = (state: RootState, userId: string) =>
-  state.users.users.find(user => user.id === userId) ?? null;
+export const selectUserById =
+  (userId: string | undefined) => (state: RootState) =>
+    userId ? state.users.users.find(user => user.id === userId) ?? null : null;
 
 export const selectUserBirthday = (state: RootState, userId: string) =>
   state.users.users.find(user => user.id === userId)?.birthday ?? '';

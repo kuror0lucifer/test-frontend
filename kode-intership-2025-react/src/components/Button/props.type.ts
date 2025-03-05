@@ -1,8 +1,9 @@
 import { ButtonHTMLAttributes } from 'react';
 
-export interface CloseButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   $position?: string;
   $top?: number;
   $right?: number;
+  $left?: number;
+  onClick?: () => void;
 }

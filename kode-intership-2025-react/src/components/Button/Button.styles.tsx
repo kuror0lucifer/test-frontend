@@ -1,11 +1,12 @@
 import { ImgHTMLAttributes } from 'react';
 import styled from 'styled-components';
-import { CloseButtonProps } from './props.type';
+import { ButtonProps } from './props.type';
 
-export const CloseButton = styled.button.attrs<CloseButtonProps>({})`
+export const CloseButton = styled.button.attrs<ButtonProps>({})`
   position: ${props => (props.$position ? props.$position : 'static')};
   top: ${props => (props.$top ? `${props.$top}px` : '0')};
   right: ${props => (props.$right ? `${props.$right}px` : '0')};
+
   width: 24px;
   height: 24px;
   background-color: #f7f7f8;
@@ -25,4 +26,19 @@ export const CloseButton = styled.button.attrs<CloseButtonProps>({})`
 export const Icon = styled.img.attrs<ImgHTMLAttributes<HTMLImageElement>>({})`
   width: 10px;
   height: 10px;
+`;
+
+export const BackButton = styled.button.attrs<ButtonProps>({})`
+  position: ${props => (props.$position ? props.$position : 'static')};
+  top: ${props => (props.$top ? `${props.$top}px` : '0')};
+  right: ${props => (props.$right ? `${props.$right}px` : '0')};
+  left: ${props => (props.$left ? `${props.$left}px` : '0')};
+  width: 24px;
+  height: 24px;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 `;

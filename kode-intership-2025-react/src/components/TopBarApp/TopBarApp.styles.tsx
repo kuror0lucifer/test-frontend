@@ -5,6 +5,7 @@ export const TopBarAppContainer = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
+  margin-top: 8px;
 `;
 
 export const TopBarAppTitle = styled.h1`

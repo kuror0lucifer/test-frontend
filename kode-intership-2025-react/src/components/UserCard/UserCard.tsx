@@ -8,8 +8,10 @@ import {
 } from './UserCard.styles';
 import { departments, DepartmentsKeys } from '../../types/departments';
 import blankAvatar from '../../constants/blankAvatar';
+import { useNavigate } from 'react-router-dom';
 
 interface UserCardProps {
+  id: string;
   avatar: string;
   name: string;
   nickName: string;
@@ -17,12 +19,14 @@ interface UserCardProps {
 }
 
 export const UserCard: FC<UserCardProps> = ({
+  id,
   avatar,
   name,
   nickName,
   department,
 }) => {
   const [imgSrc, setImgSrc] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const img = new Image();
@@ -31,8 +35,12 @@ export const UserCard: FC<UserCardProps> = ({
     img.onerror = () => setImgSrc(blankAvatar);
   }, [avatar]);
 
+  const handleClick = () => {
+    navigate(`/user/${id}`);
+  };
+
   return (
-    <UserWrapper>
+    <UserWrapper onClick={handleClick}>
       <UserAvatar
         src={imgSrc || blankAvatar}
         alt={name}

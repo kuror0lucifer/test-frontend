@@ -62,6 +62,7 @@ export const MainContent: FC = () => {
         (filteredUsers || []).map((user: User) => (
           <UserCard
             key={user.id}
+            id={user.id}
             avatar={user.avatarUrl}
             department={user.department}
             name={`${user.firstName} ${user.lastName}`}

@@ -48,6 +48,7 @@ export const SortingModal: FC<Partial<SortingModalProps>> = ({
               position='absolute'
               top={24}
               right={24}
+              variant='close'
             />
             <InputContent>
               <Radio

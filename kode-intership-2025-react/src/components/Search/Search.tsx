@@ -62,7 +62,11 @@ export const Search: FC = () => {
           />
           <Input {...register('query', { required: false })} />
           <Icon
-            src='/sorting.svg'
+            src={
+              currentSorting === 'birthday'
+                ? '/sorting-active.svg'
+                : '/sorting.svg'
+            }
             sizes='24'
             cursor='pointer'
             onClick={openModal}

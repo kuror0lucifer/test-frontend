@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
     color: #050510;
 
-    margin-top: 8px;
+    
 
     
   }
