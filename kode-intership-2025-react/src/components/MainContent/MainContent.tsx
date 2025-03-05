@@ -5,18 +5,17 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchDynamicUsers } from '../../api/service';
 import User from '../../types/user.type';
 import { UserCard } from '../UserCard';
-import blankAvatar from '../../constants/blankAvatar';
 import { EmptySearchContent } from '../EmptySearchContent';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUsersData } from '../../redux/users/slice';
 import { Error } from '../Error';
 import { selectActiveTab } from '../../redux/activeTab/selectors';
-import { selectAllUsers } from '../../redux/users/selectors';
+import { selectAllFilteredUsers } from '../../redux/users/selectors';
 
 export const MainContent: FC = () => {
   const dispatch = useDispatch();
   const activeTab = useSelector(selectActiveTab);
-  const users = useSelector(selectAllUsers);
+  const users = useSelector(selectAllFilteredUsers);
   const { data, error, isLoading, refetch, isFetching } = useQuery({
     queryKey: ['users'],
     queryFn: fetchDynamicUsers,
@@ -51,10 +50,10 @@ export const MainContent: FC = () => {
         (filteredUsers || []).map((user: User) => (
           <UserCard
             key={user.id}
-            avatar={blankAvatar}
+            avatar={user.avatarUrl}
             department={user.department}
             name={`${user.firstName} ${user.lastName}`}
-            nickName={user.nickName}
+            nickName={user.userTag.toLowerCase()}
           />
         ))
       )}

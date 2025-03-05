@@ -5,7 +5,7 @@ interface User {
   avatarUrl: string;
   firstName: string;
   lastName: string;
-  nickName: string;
+  userTag: string;
   department: DepartmentsKeys;
   position: string;
   birthday: string;

@@ -28,7 +28,7 @@ export const TabsContent = styled.span<{
   padding: 8px 12px;
   color: ${props => (props.$isActive ? '#050510' : '#97979B')};
   font-size: 15px;
-  font-weight: 600;
+  font-weight: ${props => (props.$isActive ? 600 : 500)};
   line-height: 20px;
   text-align: center;
   cursor: pointer;

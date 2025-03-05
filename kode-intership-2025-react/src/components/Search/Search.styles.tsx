@@ -1,4 +1,4 @@
-import { InputHTMLAttributes } from 'react';
+import { FormHTMLAttributes, InputHTMLAttributes } from 'react';
 import styled from 'styled-components';
 import { IconProps } from './props.type';
 
@@ -20,6 +20,11 @@ export const SearchWrapper = styled.div`
 
   background-color: #f7f7f8;
   border-radius: 16px;
+`;
+
+export const Form = styled.form.attrs<FormHTMLAttributes<HTMLFormElement>>({})`
+  width: 100%;
+  height: auto;
 `;
 
 export const Input = styled.input.attrs<InputHTMLAttributes<HTMLInputElement>>({

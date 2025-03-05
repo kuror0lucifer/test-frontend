@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import {
   UserAvatar,
   UserContentContainer,
@@ -7,6 +7,7 @@ import {
   UserWrapper,
 } from './UserCard.styles';
 import { departments, DepartmentsKeys } from '../../types/departments';
+import blankAvatar from '../../constants/blankAvatar';
 
 interface UserCardProps {
   avatar: string;
@@ -21,10 +22,19 @@ export const UserCard: FC<UserCardProps> = ({
   nickName,
   department,
 }) => {
+  const [imgSrc, setImgSrc] = useState<string | null>(null);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = avatar;
+    img.onload = () => setImgSrc(avatar);
+    img.onerror = () => setImgSrc(blankAvatar);
+  }, [avatar]);
+
   return (
     <UserWrapper>
       <UserAvatar
-        src={avatar}
+        src={imgSrc || blankAvatar}
         alt={name}
       />
       <UserContentContainer>
