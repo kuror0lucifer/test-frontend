@@ -251,6 +251,7 @@ Please change the parent <Route path="${T}"> to <Route path="${T==="/"?"*":`${T}
 
   font-size: 18px;
   font-weight: 600;
+  color: #050510;
 
   z-index: 10000;
 
@@ -311,7 +312,7 @@ Please change the parent <Route path="${T}"> to <Route path="${T==="/"?"*":`${T}
     background-color: #6534ff;
     transform: scaleX(${t=>t.$isActive?1:0});
     transform-origin: center;
-    transition: transform 0.2s ease-out;
+    transition: transform 0.2s ease-out, height 0s 0.2s;
   }
 
   &:hover {
