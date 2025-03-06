@@ -27,7 +27,7 @@ export const UserCard: FC<UserCardProps> = ({
   nickName,
   department,
 }) => {
-  const [imgSrc, setImgSrc] = useState<string | null>(null);
+  const [imgSrc, setImgSrc] = useState<string | null>(blankAvatar);
   const navigate = useNavigate();
   const { i18n } = useTranslation();
   const currentLocale = i18n.language;

@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { BackButton, CloseButton, Icon, OptionButton } from './Button.styles';
+import baseUrl from '../../constants/baseUrl';
 interface ButtonProps {
   position: string;
   top: number;
@@ -32,7 +33,7 @@ export const Button: FC<Partial<ButtonProps>> = ({
           $top={top}
           $right={right}
         >
-          <Icon src='/close-button.svg' />
+          <Icon src={`${baseUrl}/close-button.svg`} />
         </CloseButton>
       )}
       {variant === 'back' && (
@@ -42,7 +43,7 @@ export const Button: FC<Partial<ButtonProps>> = ({
           $left={left}
           onClick={onClick}
         >
-          <Icon src='/back-arrow.svg' />
+          <Icon src={`${baseUrl}/back-arrow.svg`} />
         </BackButton>
       )}
       {variant === 'translate' && (

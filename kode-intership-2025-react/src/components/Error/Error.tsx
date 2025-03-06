@@ -6,6 +6,7 @@ import {
   ErrorText,
   Icon,
 } from './Error.styles';
+import baseUrl from '../../constants/baseUrl';
 
 interface ErrorProps {
   message: string;
@@ -29,7 +30,7 @@ export const Error: FC<Partial<ErrorProps>> = ({
 
   return (
     <ContentWrapper>
-      <Icon src='/ufo.svg' />
+      <Icon src={`${baseUrl}/ufo.svg`} />
       <ErrorContainer>
         <ErrorMessage>{message}</ErrorMessage>
         <ErrorText

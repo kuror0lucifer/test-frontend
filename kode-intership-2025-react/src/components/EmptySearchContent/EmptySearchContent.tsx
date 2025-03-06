@@ -6,6 +6,7 @@ import {
   EmptySearchMessage,
   Icon,
 } from './EmptySearchContent.styles';
+import baseUrl from '../../constants/baseUrl';
 
 interface EmptySearchContentProps {
   message: string;
@@ -18,7 +19,7 @@ export const EmptySearchContent: FC<Partial<EmptySearchContentProps>> = ({
 }) => {
   return (
     <ContentWrapper>
-      <Icon src='/magnifying-glass.svg' />
+      <Icon src={`${baseUrl}/magnifying-glass.svg`} />
       <EmptySearchContainer>
         <EmptySearchMessage>{message}</EmptySearchMessage>
         <EmptySearchAdvice>{advice}</EmptySearchAdvice>

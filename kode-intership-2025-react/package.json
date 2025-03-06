@@ -1,5 +1,5 @@
 {
-  "homepage": "http://kuror0lucifer.github.io/kode-intership-2025-react",
+  "homepage": "http://kuror0lucifer.github.io/test-frontend",
   "name": "kode-intership-2025-react",
   "private": true,
   "version": "0.0.0",
@@ -8,7 +8,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.0",

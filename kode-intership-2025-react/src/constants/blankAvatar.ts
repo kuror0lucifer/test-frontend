@@ -1,3 +1,5 @@
-const blankAvatar = '/goose.svg';
+import baseUrl from './baseUrl';
+
+const blankAvatar = `${baseUrl}/goose.svg`;
 
 export default blankAvatar;

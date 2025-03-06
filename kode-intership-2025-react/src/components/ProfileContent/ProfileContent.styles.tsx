@@ -48,9 +48,15 @@ export const InfoText = styled.span<{
   line-height: 20px;
   color: ${props => props.color};
   cursor: ${props => props.cursor};
+  text-decoration: ${props => props.$phone && 'none'};
+  transition: color 0.2s ease-in-out;
 
   &:hover {
     color: ${props => props.$phone && '#6534ff'};
-    transition: color 0.2s ease-in-out;
+  }
+
+  span,
+  span a {
+    text-decoration: none;
   }
 `;

@@ -64,20 +64,19 @@ export const OptionButton = styled.button.attrs<Partial<ButtonProps>>({})`
 
   font-size: 18px;
   font-weight: 600;
+  color: #050510;
 
   z-index: 10000;
 
-  transform: translateY(100px);
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.5s ease-in-out;
   animation: appearance 0.6s ease-in;
-  animation-fill-mode: forwards;
 
   @keyframes appearance {
     from {
-      transform: translateY(100px);
+      opacity: 0;
     }
     to {
-      transform: translateY(0);
+      opacity: 1;
     }
   }
 

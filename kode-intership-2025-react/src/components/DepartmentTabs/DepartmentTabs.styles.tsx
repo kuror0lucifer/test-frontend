@@ -42,7 +42,7 @@ export const TabsContent = styled.span<{
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 2px;
+    height: 2px !important;
     background-color: #6534ff;
     transform: scaleX(${props => (props.$isActive ? 1 : 0)});
     transform-origin: center;

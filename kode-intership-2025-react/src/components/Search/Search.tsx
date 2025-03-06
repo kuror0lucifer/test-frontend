@@ -8,6 +8,7 @@ import { setFilteredUsers } from '../../redux/users/slice';
 import { setSorting } from '../../redux/sorting/slice';
 import { selectCurrentSorting } from '../../redux/sorting/selectors';
 import { useTranslation } from 'react-i18next';
+import baseUrl from '../../constants/baseUrl';
 
 interface IFormInputs {
   query: string;
@@ -59,7 +60,7 @@ export const Search: FC = () => {
       <SearchContainer>
         <SearchWrapper>
           <Icon
-            src='/search.svg'
+            src={`${baseUrl}/search.svg`}
             sizes='20'
           />
           <Input
@@ -69,8 +70,8 @@ export const Search: FC = () => {
           <Icon
             src={
               currentSorting === 'birthday'
-                ? '/sorting-active.svg'
-                : '/sorting.svg'
+                ? `${baseUrl}/sorting-active.svg`
+                : `${baseUrl}/sorting.svg`
             }
             sizes='24'
             cursor='pointer'
