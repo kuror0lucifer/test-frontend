@@ -13,6 +13,7 @@ export const TabsWrapper = styled.div`
   white-space: nowrap;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  scroll-behavior: smooth;
 
   ::-webkit-scrollbar {
     display: none;

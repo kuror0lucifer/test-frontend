@@ -17,13 +17,12 @@ i18n
         translation: RU,
       },
     },
-    lng: 'en',
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false,
     },
     detection: {
-      order: ['navigator'],
+      order: ['navigator', 'localStorage', 'queryString'],
       caches: ['localStorage'],
     },
   });

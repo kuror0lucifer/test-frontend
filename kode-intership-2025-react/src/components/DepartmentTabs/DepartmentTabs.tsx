@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useRef, useState, WheelEvent } from 'react';
 import { TabsContent, TabsWrapper } from './DepartmentTabs.styles';
 import { departments, DepartmentsKeys } from '../../types/departments';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import formatDepartmentsEN from '../../utils/formatDepartmentsEN';
 
 export const DepartmentTabs: FC = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
   const activeTab = useSelector(selectActiveTab);
   const [currentTab, setCurrentTab] = useState<DepartmentsKeys | null>(
@@ -22,8 +23,31 @@ export const DepartmentTabs: FC = () => {
     dispatch(setActiveTab(department));
   };
 
+  const handleWheel = (e: unknown) => {
+    const WheelEvent = e as WheelEvent<HTMLDivElement>;
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft += WheelEvent.deltaY * 30;
+      WheelEvent.preventDefault();
+    }
+  };
+
+  useEffect(() => {
+    const ref = scrollRef.current;
+
+    if (!ref) return;
+
+    ref.addEventListener('wheel', handleWheel);
+
+    return () => {
+      ref.removeEventListener('wheel', handleWheel);
+    };
+  }, []);
+
   return (
-    <TabsWrapper>
+    <TabsWrapper
+      ref={scrollRef}
+      onWheel={handleWheel}
+    >
       {tabs.map((key, index) => (
         <TabsContent
           key={index}
