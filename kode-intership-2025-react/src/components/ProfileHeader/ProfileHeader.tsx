@@ -5,6 +5,8 @@ import { Button } from '../Button';
 import blankAvatar from '../../constants/blankAvatar';
 import { departments, DepartmentsKeys } from '../../types/departments';
 import { useNavigate } from 'react-router-dom';
+import formatDepartmentsEN from '../../utils/formatDepartmentsEN';
+import { useTranslation } from 'react-i18next';
 
 interface ProfileHeaderProps {
   fullName: string;
@@ -21,6 +23,7 @@ export const ProfileHeader: FC<ProfileHeaderProps> = ({
 }) => {
   const navigate = useNavigate();
   const [imgSrc, setImgSrc] = useState<string | null>(null);
+  const { i18n } = useTranslation();
 
   useEffect(() => {
     const img = new Image();
@@ -74,7 +77,9 @@ export const ProfileHeader: FC<ProfileHeaderProps> = ({
           $lineHeight={16}
           color='#55555C'
         >
-          {departments[department]}
+          {i18n.language === 'en'
+            ? formatDepartmentsEN(department)
+            : departments[department]}
         </UserText>
       </UserContentContainer>
     </Wrapper>

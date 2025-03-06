@@ -7,7 +7,7 @@ import {
   Wrapper,
 } from './ProfileContent.styles';
 import formatPhone from '../../utils/formatPhone';
-import ageForm from '../../utils/ageForm';
+import { useTranslation } from 'react-i18next';
 
 interface ProfileContentProps {
   phone: string;
@@ -20,8 +20,8 @@ export const ProfileContent: FC<ProfileContentProps> = ({
   birthday,
   age,
 }) => {
+  const { t } = useTranslation();
   const formatedPhone = formatPhone(phone);
-  const formatedAge = ageForm(age);
 
   const handleClickPhone = () => {
     window.location.href = `tel:+7${phone}`;
@@ -34,12 +34,13 @@ export const ProfileContent: FC<ProfileContentProps> = ({
           <Icon src='/star.svg' />
           <InfoText color='#050510'>{birthday}</InfoText>
         </InfoContainer>
-        <InfoText color='#97979B'>{formatedAge}</InfoText>
+        <InfoText color='#97979B'>{t('age', { count: age })}</InfoText>
       </ContentWrapper>
       <ContentWrapper $justifyContent='flex-start'>
         <InfoContainer>
           <Icon src='/phone.svg' />
           <InfoText
+            $phone={true}
             color='#050510'
             cursor='pointer'
             onClick={handleClickPhone}

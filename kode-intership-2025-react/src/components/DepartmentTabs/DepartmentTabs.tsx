@@ -4,6 +4,8 @@ import { departments, DepartmentsKeys } from '../../types/departments';
 import { useDispatch, useSelector } from 'react-redux';
 import { setActiveTab } from '../../redux/activeTab/slice';
 import { selectActiveTab } from '../../redux/activeTab/selectors';
+import { useTranslation } from 'react-i18next';
+import formatDepartmentsEN from '../../utils/formatDepartmentsEN';
 
 export const DepartmentTabs: FC = () => {
   const dispatch = useDispatch();
@@ -12,6 +14,8 @@ export const DepartmentTabs: FC = () => {
     activeTab
   );
   const tabs = Object.keys(departments) as DepartmentsKeys[];
+  const { i18n } = useTranslation();
+  const currentLocale = i18n.language;
 
   const handleTabClick = (department: DepartmentsKeys) => {
     setCurrentTab(prev => (prev === department ? null : department));
@@ -26,7 +30,7 @@ export const DepartmentTabs: FC = () => {
           $isActive={currentTab === key}
           onClick={() => handleTabClick(key)}
         >
-          {departments[key]}
+          {currentLocale === 'en' ? formatDepartmentsEN(key) : departments[key]}
         </TabsContent>
       ))}
     </TabsWrapper>

@@ -13,6 +13,7 @@ import { Button } from '../Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentSorting } from '../../redux/sorting/selectors';
 import { setSorting } from '../../redux/sorting/slice';
+import { useTranslation } from 'react-i18next';
 
 interface SortingModalProps {
   isOpen: boolean;
@@ -23,6 +24,7 @@ export const SortingModal: FC<Partial<SortingModalProps>> = ({
   isOpen,
   onClose,
 }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const currentSorting = useSelector(selectCurrentSorting);
   if (!isOpen) return null;
@@ -42,7 +44,7 @@ export const SortingModal: FC<Partial<SortingModalProps>> = ({
       <Wrapper onClick={handleWrapperClick}>
         <Modal>
           <ModalContent>
-            <ModalTitle>Сортировка</ModalTitle>
+            <ModalTitle>{t('sorting')}</ModalTitle>
             <Button
               onClose={onClose}
               position='absolute'
@@ -56,7 +58,7 @@ export const SortingModal: FC<Partial<SortingModalProps>> = ({
                 onChange={() => handleSortingChange('alphabet')}
               />
               <InputLabel onClick={() => handleSortingChange('alphabet')}>
-                По алфавиту
+                {t('alphabetically')}
               </InputLabel>
             </InputContent>
             <InputContent>
@@ -65,7 +67,7 @@ export const SortingModal: FC<Partial<SortingModalProps>> = ({
                 onChange={() => handleSortingChange('birthday')}
               />
               <InputLabel onClick={() => handleSortingChange('birthday')}>
-                По дню рождения
+                {t('by_birthday')}
               </InputLabel>
             </InputContent>
           </ModalContent>

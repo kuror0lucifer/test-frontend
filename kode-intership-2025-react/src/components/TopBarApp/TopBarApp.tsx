@@ -2,15 +2,14 @@ import { FC } from 'react';
 import { TopBarAppContainer, TopBarAppTitle } from './TopBarApp.styles';
 import { Search } from '../Search';
 import { DepartmentTabs } from '../DepartmentTabs';
+import { useTranslation } from 'react-i18next';
 
-interface TopBapAppProps {
-  title?: string;
-}
+export const TopBarApp: FC = () => {
+  const { t } = useTranslation();
 
-export const TopBarApp: FC<TopBapAppProps> = ({ title = 'Поиск' }) => {
   return (
     <TopBarAppContainer>
-      <TopBarAppTitle>{title}</TopBarAppTitle>
+      <TopBarAppTitle>{t('search')}</TopBarAppTitle>
       <Search />
       <DepartmentTabs />
     </TopBarAppContainer>

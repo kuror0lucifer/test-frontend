@@ -1,14 +1,15 @@
 import { FC } from 'react';
-import { BackButton, CloseButton, Icon } from './Button.styles';
-
+import { BackButton, CloseButton, Icon, OptionButton } from './Button.styles';
 interface ButtonProps {
   position: string;
   top: number;
   right: number;
   left: number;
+  bottom: number;
   onClose: () => void;
   onClick: () => void;
-  variant: 'back' | 'close';
+  variant: 'back' | 'close' | 'translate';
+  lang: string;
 }
 
 export const Button: FC<Partial<ButtonProps>> = ({
@@ -16,9 +17,11 @@ export const Button: FC<Partial<ButtonProps>> = ({
   top,
   right,
   left,
+  bottom,
   onClose,
   onClick,
   variant,
+  lang,
 }) => {
   return (
     <>
@@ -36,12 +39,21 @@ export const Button: FC<Partial<ButtonProps>> = ({
         <BackButton
           $position={position}
           $top={top}
-          $right={right}
           $left={left}
           onClick={onClick}
         >
           <Icon src='/back-arrow.svg' />
         </BackButton>
+      )}
+      {variant === 'translate' && (
+        <OptionButton
+          $position={position}
+          $bottom={bottom}
+          $right={right}
+          onClick={onClick}
+        >
+          {lang === 'en' ? 'EN' : 'RU'}
+        </OptionButton>
       )}
     </>
   );

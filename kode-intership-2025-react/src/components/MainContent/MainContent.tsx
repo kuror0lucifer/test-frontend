@@ -2,7 +2,7 @@ import { FC, useEffect, useMemo } from 'react';
 import { ContentWrapper } from './MainContent.styles';
 import { ContentSkeleton } from '../ContentSkeleton';
 import { useQuery } from '@tanstack/react-query';
-import { fetchDynamicUsers } from '../../api/service';
+import { fetchAllUsers } from '../../api/service';
 import User from '../../types/user.type';
 import { UserCard } from '../UserCard';
 import { EmptySearchContent } from '../EmptySearchContent';
@@ -20,7 +20,7 @@ export const MainContent: FC = () => {
   const currentSorting = useSelector(selectCurrentSorting);
   const { data, error, isLoading, refetch, isFetching } = useQuery({
     queryKey: ['users'],
-    queryFn: fetchDynamicUsers,
+    queryFn: fetchAllUsers,
     staleTime: 5 * 60 * 1000,
     refetchInterval: 5 * 60 * 1000,
     refetchIntervalInBackground: true,

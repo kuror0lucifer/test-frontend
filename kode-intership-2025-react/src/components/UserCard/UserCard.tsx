@@ -9,6 +9,8 @@ import {
 import { departments, DepartmentsKeys } from '../../types/departments';
 import blankAvatar from '../../constants/blankAvatar';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import formatDepartmentsEN from '../../utils/formatDepartmentsEN';
 
 interface UserCardProps {
   id: string;
@@ -27,6 +29,8 @@ export const UserCard: FC<UserCardProps> = ({
 }) => {
   const [imgSrc, setImgSrc] = useState<string | null>(null);
   const navigate = useNavigate();
+  const { i18n } = useTranslation();
+  const currentLocale = i18n.language;
 
   useEffect(() => {
     const img = new Image();
@@ -70,7 +74,9 @@ export const UserCard: FC<UserCardProps> = ({
           $lineHeight={16}
           fontWeight={400}
         >
-          {departments[department]}
+          {currentLocale === 'en'
+            ? formatDepartmentsEN(department)
+            : departments[department]}
         </UserText>
       </UserContentContainer>
     </UserWrapper>

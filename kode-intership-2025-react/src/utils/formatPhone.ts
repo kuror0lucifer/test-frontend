@@ -1,10 +1,13 @@
 const formatPhone = (phone: string): string => {
   const cleanedPhone = phone.replace(/[-]/g, '');
 
-  return `+7 (${cleanedPhone.slice(0, 3)}) ${cleanedPhone.slice(
-    3,
-    6
-  )} ${cleanedPhone.slice(6, 8)} ${cleanedPhone.slice(8, 10)}`;
+  return `${cleanedPhone.slice(0, 2)} (${cleanedPhone.slice(
+    2,
+    5
+  )}) ${cleanedPhone.slice(5, 8)} ${cleanedPhone.slice(
+    8,
+    10
+  )} ${cleanedPhone.slice(10)}`;
 };
 
 export default formatPhone;

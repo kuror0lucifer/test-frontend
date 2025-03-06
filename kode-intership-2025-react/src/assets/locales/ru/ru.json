@@ -1,0 +1,11 @@
+{
+  "search": "Поиск",
+  "placeholder": "Введи имя, тег, почту...",
+  "sorting": "Сортировка",
+  "alphabetically": "По алфавиту",
+  "by_birthday": "По дню рождения",
+  "age_one": "{{count}} год",
+  "age_few": "{{count}} года",
+  "age_many": "{{count}} лет",
+  "age_other": "{{count}} лет"
+}

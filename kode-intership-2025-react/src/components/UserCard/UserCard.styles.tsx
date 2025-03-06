@@ -5,9 +5,16 @@ export const UserWrapper = styled.div`
   width: 343px;
   height: 84px;
   display: flex;
-
   align-items: center;
   gap: 16px;
+  border-radius: 20px;
+  transition: transform 0.3s ease-in-out;
+
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
 `;
 
 export const UserContentContainer = styled.div<{

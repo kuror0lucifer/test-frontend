@@ -7,6 +7,7 @@ import { selectAllUsers } from '../../redux/users/selectors';
 import { setFilteredUsers } from '../../redux/users/slice';
 import { setSorting } from '../../redux/sorting/slice';
 import { selectCurrentSorting } from '../../redux/sorting/selectors';
+import { useTranslation } from 'react-i18next';
 
 interface IFormInputs {
   query: string;
@@ -19,6 +20,7 @@ export const Search: FC = () => {
   const { register, watch } = useForm<IFormInputs>();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const searchValue = watch('query', '').toLowerCase().trim();
+  const { t } = useTranslation();
 
   const searchQuery = () => {
     if (!searchValue) {
@@ -60,7 +62,10 @@ export const Search: FC = () => {
             src='/search.svg'
             sizes='20'
           />
-          <Input {...register('query', { required: false })} />
+          <Input
+            {...register('query', { required: false })}
+            placeholder={t('placeholder')}
+          />
           <Icon
             src={
               currentSorting === 'birthday'

@@ -41,10 +41,16 @@ export const InfoContainer = styled.div`
 export const InfoText = styled.span<{
   color: string;
   cursor?: string;
+  $phone?: boolean;
 }>`
   font-size: 16px;
   font-weight: 500;
   line-height: 20px;
   color: ${props => props.color};
   cursor: ${props => props.cursor};
+
+  &:hover {
+    color: ${props => props.$phone && '#6534ff'};
+    transition: color 0.2s ease-in-out;
+  }
 `;

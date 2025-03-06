@@ -29,7 +29,6 @@ export const Form = styled.form.attrs<FormHTMLAttributes<HTMLFormElement>>({})`
 
 export const Input = styled.input.attrs<InputHTMLAttributes<HTMLInputElement>>({
   type: 'text',
-  placeholder: 'Введи имя, тег, почту...',
 })`
   width: 100%;
   height: auto;

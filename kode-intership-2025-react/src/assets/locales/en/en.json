@@ -1,0 +1,8 @@
+{
+  "search": "Search",
+  "placeholder": "Enter name, tag, email...",
+  "sorting": "Sorting",
+  "alphabetically": "Alphabetically",
+  "by_birthday": "By birthday",
+  "age": "{{count}} y.o."
+}
