@@ -8,6 +8,9 @@ import formatDate from '../../utils/formatDate';
 import ageCalculator from '../../utils/ageCalculator';
 import { useTranslation } from 'react-i18next';
 import { Button } from '../../components/Button';
+import { useTheme } from '../../hooks';
+import themes from '../../constants/themes';
+import { ThemeProvider } from 'styled-components';
 
 export const Profile: FC = () => {
   const [birthday, setBirthday] = useState<string>('');
@@ -15,6 +18,7 @@ export const Profile: FC = () => {
   const { userId } = useParams();
   const user = useSelector(selectUserById(userId));
   const { i18n } = useTranslation();
+  const { theme, toggleTheme } = useTheme();
 
   const toggleLang = () => {
     const newLang = i18n.language === 'ru' ? 'en' : 'ru';
@@ -32,7 +36,7 @@ export const Profile: FC = () => {
 
   return (
     user && (
-      <>
+      <ThemeProvider theme={themes[theme]}>
         <ProfileHeader
           fullName={`${user.firstName} ${user.lastName}`}
           avatar={user?.avatarUrl}
@@ -45,6 +49,14 @@ export const Profile: FC = () => {
           age={age}
         />
         <Button
+          variant='themes'
+          bottom={40}
+          right={100}
+          position='fixed'
+          onClick={toggleTheme}
+          themeMode={theme}
+        />
+        <Button
           variant='translate'
           bottom={40}
           right={40}
@@ -52,7 +64,7 @@ export const Profile: FC = () => {
           lang={i18n.language}
           onClick={() => toggleLang()}
         />
-      </>
+      </ThemeProvider>
     )
   );
 };

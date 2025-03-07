@@ -8,7 +8,7 @@ export const UserWrapper = styled.div`
   align-items: center;
   gap: 16px;
   border-radius: 20px;
-  transition: transform 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 
   cursor: pointer;
 
@@ -50,13 +50,15 @@ export const UserAvatar = styled.img.attrs<ImgHTMLAttributes<HTMLImageElement>>(
 `;
 
 export const UserText = styled.span<{
-  fontSize: number;
-  color: string;
-  fontWeight: number;
-  $lineHeight: number;
+  fontSize?: number;
+  color?: string;
+  fontWeight?: number;
+  $lineHeight?: number;
 }>`
   font-size: ${props => props.fontSize}px;
-  color: ${props => props.color};
+  color: ${props => (props.color ? props.color : props.theme.textPrimary)};
   font-weight: ${props => props.fontWeight};
   line-height: ${props => props.$lineHeight}px;
+
+  transition: color 0.3s ease-in-out;
 `;

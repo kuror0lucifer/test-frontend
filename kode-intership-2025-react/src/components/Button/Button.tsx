@@ -1,6 +1,10 @@
 import { FC } from 'react';
-import { BackButton, CloseButton, Icon, OptionButton } from './Button.styles';
-import baseUrl from '../../constants/baseUrl';
+import { BackButton, CloseButton, OptionButton } from './Button.styles';
+import { BackArrowIcon, CloseButtonIcon } from '../Icons';
+import ThemeType from '../../types/theme.type';
+import { FaRegMoon } from 'react-icons/fa';
+import { FaRegSun } from 'react-icons/fa';
+
 interface ButtonProps {
   position: string;
   top: number;
@@ -9,8 +13,9 @@ interface ButtonProps {
   bottom: number;
   onClose: () => void;
   onClick: () => void;
-  variant: 'back' | 'close' | 'translate';
+  variant: 'back' | 'close' | 'translate' | 'themes';
   lang: string;
+  themeMode: ThemeType;
 }
 
 export const Button: FC<Partial<ButtonProps>> = ({
@@ -23,6 +28,7 @@ export const Button: FC<Partial<ButtonProps>> = ({
   onClick,
   variant,
   lang,
+  themeMode,
 }) => {
   return (
     <>
@@ -33,7 +39,7 @@ export const Button: FC<Partial<ButtonProps>> = ({
           $top={top}
           $right={right}
         >
-          <Icon src={`${baseUrl}/close-button.svg`} />
+          <CloseButtonIcon color='#C3C3C6' />
         </CloseButton>
       )}
       {variant === 'back' && (
@@ -43,7 +49,7 @@ export const Button: FC<Partial<ButtonProps>> = ({
           $left={left}
           onClick={onClick}
         >
-          <Icon src={`${baseUrl}/back-arrow.svg`} />
+          <BackArrowIcon />
         </BackButton>
       )}
       {variant === 'translate' && (
@@ -53,7 +59,21 @@ export const Button: FC<Partial<ButtonProps>> = ({
           $right={right}
           onClick={onClick}
         >
-          {lang === 'en' ? 'EN' : 'RU'}
+          <span>{lang === 'en' ? 'EN' : 'RU'}</span>
+        </OptionButton>
+      )}
+      {variant === 'themes' && (
+        <OptionButton
+          $position={position}
+          $bottom={bottom}
+          $right={right}
+          onClick={onClick}
+        >
+          {themeMode === 'dark' ? (
+            <FaRegMoon size={20} />
+          ) : (
+            <FaRegSun size={20} />
+          )}
         </OptionButton>
       )}
     </>

@@ -16,7 +16,7 @@ export const Wrapper = styled.div`
 export const Modal = styled.div`
   width: 373px;
   height: auto;
-  background-color: white;
+  background-color: ${({ theme }) => theme.modalPrimary};
   padding-bottom: 8px;
   border-radius: 20px;
 
@@ -51,7 +51,9 @@ export const ModalTitle = styled.h2`
   font-size: 20px;
   line-height: 24px;
   text-align: center;
-  color: #050510;
+  color: ${({ theme }) => theme.textPrimary};
+
+  transition: color 0.3s ease-in-out;
 
   align-self: center;
   margin-bottom: 16px;
@@ -78,7 +80,8 @@ export const InputLabel = styled.label`
   font-weight: 500;
   line-height: 20px;
 
-  color: #050510;
+  color: ${({ theme }) => theme.textPrimary};
+  transition: color 0.3s ease-in-out;
   cursor: pointer;
 `;
 

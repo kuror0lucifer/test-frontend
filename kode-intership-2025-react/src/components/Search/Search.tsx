@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { Icon, Input, SearchContainer, SearchWrapper } from './Search.styles';
+import { Input, SearchContainer, SearchWrapper } from './Search.styles';
 import { SortingModal } from '../SortingModal';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,7 +8,8 @@ import { setFilteredUsers } from '../../redux/users/slice';
 import { setSorting } from '../../redux/sorting/slice';
 import { selectCurrentSorting } from '../../redux/sorting/selectors';
 import { useTranslation } from 'react-i18next';
-import baseUrl from '../../constants/baseUrl';
+import { SearchGlass } from '../Icons';
+import { SortingIcon } from '../Icons';
 
 interface IFormInputs {
   query: string;
@@ -22,6 +23,7 @@ export const Search: FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const searchValue = watch('query', '').toLowerCase().trim();
   const { t } = useTranslation();
+  const [isActive, setIsActive] = useState<boolean>(false);
 
   const searchQuery = () => {
     if (!searchValue) {
@@ -55,27 +57,26 @@ export const Search: FC = () => {
   };
   const closeModal = () => setIsOpen(false);
 
+  useEffect(() => {
+    if (currentSorting === 'birthday') {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
+  }, [currentSorting]);
+
   return (
     <>
       <SearchContainer>
         <SearchWrapper>
-          <Icon
-            src={`${baseUrl}/search.svg`}
-            sizes='20'
-          />
+          <SearchGlass />
           <Input
             {...register('query', { required: false })}
             placeholder={t('placeholder')}
           />
-          <Icon
-            src={
-              currentSorting === 'birthday'
-                ? `${baseUrl}/sorting-active.svg`
-                : `${baseUrl}/sorting.svg`
-            }
-            sizes='24'
-            cursor='pointer'
+          <SortingIcon
             onClick={openModal}
+            isActive={isActive}
           />
         </SearchWrapper>
       </SearchContainer>

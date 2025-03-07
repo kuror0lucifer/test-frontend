@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const TabsWrapper = styled.div`
+export const TabsWrapper = styled.ul`
   width: 100%;
   height: auto;
   display: flex;
@@ -20,21 +20,24 @@ export const TabsWrapper = styled.div`
   }
 `;
 
-export const TabsContent = styled.span<{
+export const TabsContent = styled.li<{
   $isActive: boolean;
 }>`
   position: relative;
   width: fit-content;
   height: auto;
   padding: 8px 12px;
-  color: ${props => (props.$isActive ? '#050510' : '#97979B')};
+  color: ${props =>
+    props.$isActive ? props.theme.textPrimary : props.theme.textAdditional};
   font-size: 15px;
 
   font-weight: ${props => (props.$isActive ? 600 : 500)};
   line-height: 20px;
   text-align: center;
   cursor: pointer;
-  transition: color 0.1s ease-out;
+  transition: color 0.3s ease-out;
+
+  list-style: none;
 
   &::after {
     content: '';

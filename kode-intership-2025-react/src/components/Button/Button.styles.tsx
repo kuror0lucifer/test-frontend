@@ -57,14 +57,12 @@ export const OptionButton = styled.button.attrs<Partial<ButtonProps>>({})`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
   background-color: #ececec;
   cursor: pointer;
-
-  font-size: 18px;
-  font-weight: 600;
-  color: #050510;
 
   z-index: 10000;
 
@@ -78,6 +76,12 @@ export const OptionButton = styled.button.attrs<Partial<ButtonProps>>({})`
     to {
       opacity: 1;
     }
+  }
+
+  span {
+    font-size: 18px;
+    font-weight: 600;
+    color: #050510;
   }
 
   &:hover {

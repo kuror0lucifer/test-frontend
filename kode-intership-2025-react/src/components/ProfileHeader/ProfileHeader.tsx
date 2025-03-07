@@ -58,7 +58,6 @@ export const ProfileHeader: FC<ProfileHeaderProps> = ({
             fontSize={24}
             fontWeight={700}
             $lineHeight={28}
-            color='#050510'
           >
             {fullName}
           </UserText>

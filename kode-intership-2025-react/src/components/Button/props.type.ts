@@ -7,4 +7,5 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   $left: number;
   $bottom: number;
   onClick: () => void;
+  color: string;
 }

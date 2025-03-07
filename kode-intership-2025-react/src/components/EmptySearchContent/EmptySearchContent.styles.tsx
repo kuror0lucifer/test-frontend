@@ -31,7 +31,8 @@ export const EmptySearchMessage = styled.h3`
   line-height: 22px;
   font-weight: 600;
   text-align: center;
-  color: #050510;
+  color: ${({ theme }) => theme.textPrimary};
+  transition: color 0.3s ease-in-out;
 `;
 
 export const EmptySearchAdvice = styled.span`

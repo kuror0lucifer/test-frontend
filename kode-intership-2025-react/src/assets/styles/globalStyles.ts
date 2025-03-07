@@ -16,6 +16,8 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
     color: #050510;
     position: relative;
+
+    background-color: ${({ theme }) => theme.primary}
     
   }
 

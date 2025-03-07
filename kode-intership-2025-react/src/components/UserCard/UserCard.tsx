@@ -52,7 +52,6 @@ export const UserCard: FC<UserCardProps> = ({
       <UserContentContainer>
         <UserNameContainer>
           <UserText
-            color='#050510'
             fontSize={16}
             $lineHeight={20}
             fontWeight={500}

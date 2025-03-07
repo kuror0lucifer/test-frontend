@@ -31,7 +31,7 @@ export const ErrorMessage = styled.h3`
   line-height: 22px;
   font-weight: 600;
   text-align: center;
-  color: #050510;
+  color: ${({ theme }) => theme.textPrimary};
 `;
 
 export const ErrorText = styled.span<{

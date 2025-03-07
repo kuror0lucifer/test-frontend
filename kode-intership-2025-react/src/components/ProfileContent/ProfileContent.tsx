@@ -1,14 +1,13 @@
 import { FC } from 'react';
 import {
   ContentWrapper,
-  Icon,
   InfoContainer,
   InfoText,
   Wrapper,
 } from './ProfileContent.styles';
 import formatPhone from '../../utils/formatPhone';
 import { useTranslation } from 'react-i18next';
-import baseUrl from '../../constants/baseUrl';
+import { PhoneIcon, StarIcon } from '../Icons';
 
 interface ProfileContentProps {
   phone: string;
@@ -32,17 +31,16 @@ export const ProfileContent: FC<ProfileContentProps> = ({
     <Wrapper>
       <ContentWrapper $justifyContent='space-between'>
         <InfoContainer>
-          <Icon src={`${baseUrl}/star.svg`} />
-          <InfoText color='#050510'>{birthday}</InfoText>
+          <StarIcon />
+          <InfoText>{birthday}</InfoText>
         </InfoContainer>
         <InfoText color='#97979B'>{t('age', { count: age })}</InfoText>
       </ContentWrapper>
       <ContentWrapper $justifyContent='flex-start'>
         <InfoContainer>
-          <Icon src={`${baseUrl}/phone.svg`} />
+          <PhoneIcon />
           <InfoText
             $phone={true}
-            color='#050510'
             cursor='pointer'
             onClick={handleClickPhone}
           >

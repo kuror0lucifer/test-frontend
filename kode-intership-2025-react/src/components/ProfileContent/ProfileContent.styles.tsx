@@ -3,10 +3,13 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: auto;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 8px 16px 0 16px;
+
+  background-color: ${({ theme }) => theme.primary};
+  transition: background-color 0.3s ease-in-out;
 `;
 
 export const ContentWrapper = styled.div<{
@@ -38,18 +41,20 @@ export const InfoContainer = styled.div`
   gap: 14px;
 `;
 
-export const InfoText = styled.span<{
-  color: string;
-  cursor?: string;
-  $phone?: boolean;
-}>`
+export const InfoText = styled.span<
+  Partial<{
+    color: string;
+    cursor: string;
+    $phone: boolean;
+  }>
+>`
   font-size: 16px;
   font-weight: 500;
   line-height: 20px;
-  color: ${props => props.color};
+  color: ${props => (props.color ? props.color : props.theme.textPrimary)};
   cursor: ${props => props.cursor};
   text-decoration: ${props => props.$phone && 'none'};
-  transition: color 0.2s ease-in-out;
+  transition: color 0.3s ease-in-out;
 
   &:hover {
     color: ${props => props.$phone && '#6534ff'};
