@@ -1,6 +1,13 @@
 {
   "search": "Поиск",
+  "emptySearchMessage": "Мы никого не нашли",
+  "emptySearchAdvice": "Попробуй скорректировать запрос",
+  "noInternet": "Не могу обновить данные. Проверь соединение с интернетом.",
+  "loadingData": "Секундочку, гружусь...",
   "placeholder": "Введи имя, тег, почту...",
+  "criticalErrorMessage": "Какой-то сверхразум все сломал",
+  "criticalErrorText": "Постараемся быстро починить",
+  "criticalErrorReload": "Попробовать снова",
   "sorting": "Сортировка",
   "alphabetically": "По алфавиту",
   "by_birthday": "По дню рождения",

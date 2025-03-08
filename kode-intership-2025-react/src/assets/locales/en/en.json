@@ -1,6 +1,13 @@
 {
   "search": "Search",
+  "emptySearchMessage": "We didn't find anyone",
+  "emptySearchAdvice": "Try adjusting the query",
+  "noInternet": "Can't update the data. Check your internet connection.",
+  "loadingData": "One second, loading up...",
   "placeholder": "Enter name, tag, email...",
+  "criticalErrorMessage": "Some superintelligence broke everything",
+  "criticalErrorText": "We'll try to fix it quickly",
+  "criticalErrorReload": "Try again",
   "sorting": "Sorting",
   "alphabetically": "Alphabetically",
   "by_birthday": "By birthday",

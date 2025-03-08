@@ -57,32 +57,21 @@ export const MainContent: FC = () => {
     return result;
   }, [users, activeTab, currentSorting]);
 
-  const isBirthdaySorting = Array.isArray(filteredUsers);
+  const isBirthdaySorting = !Array.isArray(filteredUsers);
 
   return (
     <ContentWrapper>
       {isLoading || isFetching ? (
         Array.from({
-          length: isBirthdaySorting ? filteredUsers?.length : 10,
+          length: !isBirthdaySorting ? filteredUsers?.length : 10,
         }).map((_, index) => <ContentSkeleton key={index} />)
       ) : error ? (
         <Error onRetry={refetch} />
-      ) : isBirthdaySorting && filteredUsers?.length === 0 ? (
-        <EmptySearchContent />
-      ) : currentSorting === 'alphabet' && isBirthdaySorting ? (
-        (filteredUsers || []).map((user: User) => (
-          <UserCard
-            key={user.id}
-            id={user.id}
-            avatar={user.avatarUrl}
-            department={user.department}
-            name={`${user.firstName} ${user.lastName}`}
-            nickName={user.userTag.toLowerCase()}
-          />
-        ))
-      ) : currentSorting === 'birthday' && !isBirthdaySorting ? (
-        <>
-          {filteredUsers?.birthdayThisYear?.map((user: User) => (
+      ) : currentSorting === 'alphabet' && !isBirthdaySorting ? (
+        !isBirthdaySorting && filteredUsers?.length === 0 ? (
+          <EmptySearchContent />
+        ) : (
+          (filteredUsers || []).map((user: User) => (
             <UserCard
               key={user.id}
               id={user.id}
@@ -91,21 +80,45 @@ export const MainContent: FC = () => {
               name={`${user.firstName} ${user.lastName}`}
               nickName={user.userTag.toLowerCase()}
             />
-          ))}
-          <BirthdaySeparator />
-          {filteredUsers?.birthdayNextYear?.map((user: User) => (
-            <UserCard
-              key={user.id}
-              id={user.id}
-              avatar={user.avatarUrl}
-              department={user.department}
-              name={`${user.firstName} ${user.lastName}`}
-              nickName={user.userTag.toLowerCase()}
-            />
-          ))}
-        </>
+          ))
+        )
+      ) : currentSorting === 'birthday' && isBirthdaySorting ? (
+        isBirthdaySorting &&
+        filteredUsers.birthdayThisYear.length === 0 &&
+        filteredUsers.birthdayNextYear.length === 0 ? (
+          <EmptySearchContent />
+        ) : (
+          <>
+            {filteredUsers?.birthdayThisYear?.map((user: User) => (
+              <UserCard
+                key={user.id}
+                id={user.id}
+                avatar={user.avatarUrl}
+                department={user.department}
+                name={`${user.firstName} ${user.lastName}`}
+                nickName={user.userTag.toLowerCase()}
+              />
+            ))}
+            {filteredUsers.birthdayNextYear.length ||
+            filteredUsers.birthdayThisYear.length ? (
+              <BirthdaySeparator />
+            ) : (
+              <></>
+            )}
+            {filteredUsers?.birthdayNextYear?.map((user: User) => (
+              <UserCard
+                key={user.id}
+                id={user.id}
+                avatar={user.avatarUrl}
+                department={user.department}
+                name={`${user.firstName} ${user.lastName}`}
+                nickName={user.userTag.toLowerCase()}
+              />
+            ))}
+          </>
+        )
       ) : (
-        ''
+        <></>
       )}
     </ContentWrapper>
   );

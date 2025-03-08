@@ -7,22 +7,17 @@ import {
   Icon,
 } from './EmptySearchContent.styles';
 import baseUrl from '../../constants/baseUrl';
+import { useTranslation } from 'react-i18next';
 
-interface EmptySearchContentProps {
-  message: string;
-  advice: string;
-}
+export const EmptySearchContent: FC = () => {
+  const { t } = useTranslation();
 
-export const EmptySearchContent: FC<Partial<EmptySearchContentProps>> = ({
-  message = 'Мы никого не нашли',
-  advice = 'Попробуй скорректировать запрос',
-}) => {
   return (
     <ContentWrapper>
       <Icon src={`${baseUrl}/magnifying-glass.svg`} />
       <EmptySearchContainer>
-        <EmptySearchMessage>{message}</EmptySearchMessage>
-        <EmptySearchAdvice>{advice}</EmptySearchAdvice>
+        <EmptySearchMessage>{t('emptySearchMessage')}</EmptySearchMessage>
+        <EmptySearchAdvice>{t('emptySearchAdvice')}</EmptySearchAdvice>
       </EmptySearchContainer>
     </ContentWrapper>
   );

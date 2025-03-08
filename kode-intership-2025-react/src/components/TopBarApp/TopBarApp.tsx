@@ -56,9 +56,7 @@ export const TopBarApp: FC = () => {
     <>
       <TopBarAppContainer $bgColor='#F44336'>
         <TopBarAppTitle color='white'>{t('search')}</TopBarAppTitle>
-        <TopBarAppText>
-          Не могу обновить данные. Проверь соединение с интернетом.
-        </TopBarAppText>
+        <TopBarAppText>{t('noInternet')}</TopBarAppText>
       </TopBarAppContainer>
       <DepartmentTabs />
     </>
@@ -66,7 +64,7 @@ export const TopBarApp: FC = () => {
     <>
       <TopBarAppContainer $bgColor='#6534FF'>
         <TopBarAppTitle color='white'>{t('search')}</TopBarAppTitle>
-        <TopBarAppText>Секундочку, гружусь...</TopBarAppText>
+        <TopBarAppText>{t('loadingData')}</TopBarAppText>
       </TopBarAppContainer>
       <DepartmentTabs />
     </>
