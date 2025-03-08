@@ -54,8 +54,6 @@ export const MainContent: FC = () => {
       result = sortByBirthday(result);
     }
 
-    console.log(result);
-
     return result;
   }, [users, activeTab, currentSorting]);
 

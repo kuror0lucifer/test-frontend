@@ -9,6 +9,8 @@ export const TabsWrapper = styled.ul`
   padding-left: 16px;
   padding-top: 8px;
   border-bottom: 1px solid #c3c3c6;
+  background-color: ${({ theme }) => theme.primary};
+  transition: background-color 0.3s ease-in-out;
   overflow-x: auto;
   white-space: nowrap;
   -ms-overflow-style: none;
