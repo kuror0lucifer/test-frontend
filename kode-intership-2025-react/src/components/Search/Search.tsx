@@ -10,6 +10,7 @@ import { selectCurrentSorting } from '../../redux/sorting/selectors';
 import { useTranslation } from 'react-i18next';
 import { SearchGlass } from '../Icons';
 import { SortingIcon } from '../Icons';
+import { useSearchParams } from 'react-router-dom';
 
 interface IFormInputs {
   query: string;
@@ -19,11 +20,29 @@ export const Search: FC = () => {
   const dispatch = useDispatch();
   const users = useSelector(selectAllUsers);
   const currentSorting = useSelector(selectCurrentSorting);
-  const { register, watch } = useForm<IFormInputs>();
+  const { register, watch, setValue } = useForm<IFormInputs>();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [searchParams, setSearchParams] = useSearchParams();
   const searchValue = watch('query', '').toLowerCase().trim();
   const { t } = useTranslation();
   const [isActive, setIsActive] = useState<boolean>(false);
+
+  useEffect(() => {
+    const queryFromUrl = searchParams.get('query') || '';
+    if (queryFromUrl) {
+      setValue('query', queryFromUrl);
+      dispatch(
+        setFilteredUsers(
+          users.filter(
+            user =>
+              user.firstName.toLowerCase().includes(queryFromUrl) ||
+              user.lastName.toLowerCase().includes(queryFromUrl) ||
+              user.userTag.toLowerCase().includes(queryFromUrl)
+          )
+        )
+      );
+    }
+  }, [searchParams, dispatch, users, setValue]);
 
   const searchQuery = () => {
     if (!searchValue) {
@@ -44,10 +63,15 @@ export const Search: FC = () => {
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
       searchQuery();
+      if (searchValue) {
+        setSearchParams({ query: searchValue });
+      } else {
+        setSearchParams({});
+      }
     }, 500);
 
     return () => clearTimeout(delayDebounce);
-  }, [searchValue, users]);
+  }, [searchValue, users, setSearchParams]);
 
   const openModal = () => {
     setIsOpen(true);
