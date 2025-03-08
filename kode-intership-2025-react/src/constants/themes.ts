@@ -10,6 +10,10 @@ const themes = {
       background: '#c5c5c5',
       icon: '#9b9b9c',
     },
+    button: {
+      primary: '#272626',
+      additional: '#545252',
+    },
     textAdditional: '#767676',
     textAdditionalDark: '#595959',
     optional: '#6534FF',
@@ -24,6 +28,10 @@ const themes = {
       textPrimary: '#000',
       background: '#F7F7F8',
       icon: '#C3C3C6',
+    },
+    button: {
+      primary: '#F7F7F8',
+      additional: '#ececec',
     },
     textPrimary: '#050510',
     textAdditional: '#97979B',

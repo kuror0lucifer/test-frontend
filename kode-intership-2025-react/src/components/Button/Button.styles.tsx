@@ -8,17 +8,17 @@ export const CloseButton = styled.button.attrs<Partial<ButtonProps>>({})`
   right: ${props => (props.$right ? `${props.$right}px` : '0')};
   width: 24px;
   height: 24px;
-  background-color: #f7f7f8;
+  background-color: ${({ theme }) => theme.button.primary};
   border-radius: 12px;
   border: none;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: 0.2s background-color ease-in-out;
+  transition: background-color 0.3s ease-in-out;
 
   &:hover {
-    background-color: #ececec;
+    background-color: ${({ theme }) => theme.button.additional};
   }
 `;
 
@@ -43,7 +43,7 @@ export const BackButton = styled.button.attrs<Partial<ButtonProps>>({})`
   cursor: pointer;
 
   &:hover {
-    background-color: #ececec;
+    background-color: ${({ theme }) => theme.button.additional};
     transition: background-color 0.3s ease-in-out;
   }
 `;

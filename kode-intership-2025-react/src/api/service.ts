@@ -48,7 +48,9 @@ export const fetchDynamicUsers = async () => {
 
 export const fetchUsersError = async () => {
   try {
-    const { data } = await apiService.get('?__code=500&__dynamic=true');
+    const { data } = await apiService.get(
+      `${API_BASE_URL}?__code=500&__dynamic=true`
+    );
 
     return data.items;
   } catch (err) {

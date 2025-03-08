@@ -10,6 +10,14 @@ const GlobalStyle = createGlobalStyle`
     -ms-overflow-style: none;
   }
 
+  *::selection {
+    background: #6534FF;
+  }
+
+  *::-moz-selection {
+    background: #6534FF;
+  }
+
   body {
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
