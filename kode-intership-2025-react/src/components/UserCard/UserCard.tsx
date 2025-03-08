@@ -41,6 +41,7 @@ export const UserCard: FC<UserCardProps> = ({
 
   const handleClick = () => {
     navigate(`/user/${id}`);
+    window.scrollTo(0, 0);
   };
 
   return (
