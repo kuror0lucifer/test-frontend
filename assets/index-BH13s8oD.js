@@ -458,7 +458,7 @@ Please change the parent <Route path="${R}"> to <Route path="${R==="/"?"*":`${R}
   line-height: ${e=>e.$lineHeight}px;
 
   transition: color 0.3s ease-in-out;
-`,nm="/test-frontend",Pl=`${nm}/goose.svg`,Dh=({id:e,avatar:n,name:a,nickName:i,department:u})=>{const[o,f]=j.useState(Pl),h=_c(),{i18n:m}=qn(),g=m.language;j.useEffect(()=>{const v=new Image;v.src=n,v.onload=()=>f(n),v.onerror=()=>f(Pl)},[n]);const p=()=>{h(`/user/${e}`)};return q.jsxs(l7,{onClick:p,children:[q.jsx(T2,{src:o||Pl,alt:a}),q.jsxs(C2,{children:[q.jsxs(R2,{children:[q.jsx(is,{fontSize:16,$lineHeight:20,fontWeight:500,children:a}),q.jsx(is,{color:"#97979B",fontSize:14,$lineHeight:18,fontWeight:500,children:i})]}),q.jsx(is,{color:"#55555C",fontSize:13,$lineHeight:16,fontWeight:400,children:g==="en"?Xg(u):fc[u]})]})]})},u7=ve.div`
+`,nm="/test-frontend",Pl=`${nm}/goose.svg`,Dh=({id:e,avatar:n,name:a,nickName:i,department:u})=>{const[o,f]=j.useState(Pl),h=_c(),{i18n:m}=qn(),g=m.language;j.useEffect(()=>{const v=new Image;v.src=n,v.onload=()=>f(n),v.onerror=()=>f(Pl)},[n]);const p=()=>{h(`/user/${e}`),window.scrollTo(0,0)};return q.jsxs(l7,{onClick:p,children:[q.jsx(T2,{src:o||Pl,alt:a}),q.jsxs(C2,{children:[q.jsxs(R2,{children:[q.jsx(is,{fontSize:16,$lineHeight:20,fontWeight:500,children:a}),q.jsx(is,{color:"#97979B",fontSize:14,$lineHeight:18,fontWeight:500,children:i})]}),q.jsx(is,{color:"#55555C",fontSize:13,$lineHeight:16,fontWeight:400,children:g==="en"?Xg(u):fc[u]})]})]})},u7=ve.div`
   width: 100%;
   height: 300px;
   display: flex;
