@@ -12,6 +12,8 @@ import { Error } from '../Error';
 import { selectActiveTab } from '../../redux/activeTab/selectors';
 import { selectAllFilteredUsers } from '../../redux/users/selectors';
 import { selectCurrentSorting } from '../../redux/sorting/selectors';
+import sortByBirthday from '../../utils/sortByBirthday';
+import { BirthdaySeparator } from '../BirthdaySeparator';
 
 export const MainContent: FC = () => {
   const dispatch = useDispatch();
@@ -35,7 +37,12 @@ export const MainContent: FC = () => {
   const filteredUsers = useMemo(() => {
     if (!users || !Array.isArray(users)) return [];
 
-    let result = [...users];
+    let result:
+      | User[]
+      | {
+          birthdayThisYear: User[];
+          birthdayNextYear: User[];
+        } = [...users];
 
     if (activeTab !== 'all') {
       result = result.filter((user: User) => user.department === activeTab);
@@ -43,22 +50,28 @@ export const MainContent: FC = () => {
 
     if (currentSorting === 'alphabet') {
       result.sort((a, b) => a.lastName.localeCompare(b.lastName));
+    } else if (currentSorting === 'birthday') {
+      result = sortByBirthday(result);
     }
+
+    console.log(result);
 
     return result;
   }, [users, activeTab, currentSorting]);
 
+  const isBirthdaySorting = Array.isArray(filteredUsers);
+
   return (
     <ContentWrapper>
       {isLoading || isFetching ? (
-        Array.from({ length: filteredUsers?.length || 10 }).map((_, index) => (
-          <ContentSkeleton key={index} />
-        ))
+        Array.from({
+          length: isBirthdaySorting ? filteredUsers?.length : 10,
+        }).map((_, index) => <ContentSkeleton key={index} />)
       ) : error ? (
         <Error onRetry={refetch} />
-      ) : filteredUsers?.length === 0 ? (
+      ) : isBirthdaySorting && filteredUsers?.length === 0 ? (
         <EmptySearchContent />
-      ) : (
+      ) : currentSorting === 'alphabet' && isBirthdaySorting ? (
         (filteredUsers || []).map((user: User) => (
           <UserCard
             key={user.id}
@@ -69,6 +82,32 @@ export const MainContent: FC = () => {
             nickName={user.userTag.toLowerCase()}
           />
         ))
+      ) : currentSorting === 'birthday' && !isBirthdaySorting ? (
+        <>
+          {filteredUsers?.birthdayThisYear?.map((user: User) => (
+            <UserCard
+              key={user.id}
+              id={user.id}
+              avatar={user.avatarUrl}
+              department={user.department}
+              name={`${user.firstName} ${user.lastName}`}
+              nickName={user.userTag.toLowerCase()}
+            />
+          ))}
+          <BirthdaySeparator />
+          {filteredUsers?.birthdayNextYear?.map((user: User) => (
+            <UserCard
+              key={user.id}
+              id={user.id}
+              avatar={user.avatarUrl}
+              department={user.department}
+              name={`${user.firstName} ${user.lastName}`}
+              nickName={user.userTag.toLowerCase()}
+            />
+          ))}
+        </>
+      ) : (
+        ''
       )}
     </ContentWrapper>
   );

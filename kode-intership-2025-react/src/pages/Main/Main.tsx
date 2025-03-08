@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { TopBarApp } from '../../components/TopBarApp';
 import { MainContent } from '../../components/MainContent/MainContent';
 import { Button } from '../../components/Button';
@@ -14,10 +14,6 @@ export const Main: FC = () => {
     const newLang = i18n.language === 'ru' ? 'en' : 'ru';
     i18n.changeLanguage(newLang);
   };
-
-  useEffect(() => {
-    console.log(theme);
-  }, [theme]);
 
   return (
     <ThemeProvider theme={themes[theme]}>

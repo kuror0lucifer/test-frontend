@@ -1,0 +1,1 @@
+export { BirthdaySeparator } from './BirthdaySeparator';

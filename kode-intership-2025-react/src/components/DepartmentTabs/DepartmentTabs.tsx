@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import formatDepartmentsEN from '../../utils/formatDepartmentsEN';
 
 export const DepartmentTabs: FC = () => {
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLUListElement | null>(null);
   const dispatch = useDispatch();
   const activeTab = useSelector(selectActiveTab);
   const [currentTab, setCurrentTab] = useState<DepartmentsKeys | null>(

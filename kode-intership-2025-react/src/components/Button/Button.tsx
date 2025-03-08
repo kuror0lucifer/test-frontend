@@ -70,9 +70,15 @@ export const Button: FC<Partial<ButtonProps>> = ({
           onClick={onClick}
         >
           {themeMode === 'dark' ? (
-            <FaRegMoon size={20} />
+            <FaRegMoon
+              size={20}
+              color='black'
+            />
           ) : (
-            <FaRegSun size={20} />
+            <FaRegSun
+              size={20}
+              color='black'
+            />
           )}
         </OptionButton>
       )}

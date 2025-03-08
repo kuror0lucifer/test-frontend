@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Svg = styled.svg<{
   cursor?: string;
-  $isActive: boolean;
+  $isActive?: boolean;
 }>`
   fill: ${props =>
     props.$isActive ? props.theme.optional : props.theme.search.icon};
