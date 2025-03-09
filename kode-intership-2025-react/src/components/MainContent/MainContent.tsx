@@ -28,6 +28,8 @@ export const MainContent: FC = () => {
     refetchIntervalInBackground: true,
   });
 
+  console.log(error);
+
   useEffect(() => {
     if (data) {
       dispatch(setUsersData(data));

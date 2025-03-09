@@ -1,5 +1,14 @@
 import { ImgHTMLAttributes } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+
+  * {
+    text-decoration: none;
+  }
+`;
 
 export const UserWrapper = styled.div`
   width: 343px;
@@ -9,6 +18,8 @@ export const UserWrapper = styled.div`
   gap: 16px;
   border-radius: 20px;
   transition: all 0.3s ease-in-out;
+
+  text-decoration: none;
 
   cursor: pointer;
 

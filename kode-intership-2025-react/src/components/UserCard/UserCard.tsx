@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import {
+  StyledLink,
   UserAvatar,
   UserContentContainer,
   UserNameContainer,
@@ -45,40 +46,45 @@ export const UserCard: FC<UserCardProps> = ({
   };
 
   return (
-    <UserWrapper onClick={handleClick}>
-      <UserAvatar
-        src={imgSrc || blankAvatar}
-        alt={name}
-      />
-      <UserContentContainer>
-        <UserNameContainer>
+    <StyledLink
+      to={`/user/${id}`}
+      onClick={() => window.scrollTo(0, 0)}
+    >
+      <UserWrapper onClick={handleClick}>
+        <UserAvatar
+          src={imgSrc || blankAvatar}
+          alt={name}
+        />
+        <UserContentContainer>
+          <UserNameContainer>
+            <UserText
+              fontSize={16}
+              $lineHeight={20}
+              fontWeight={500}
+            >
+              {name}
+            </UserText>
+            <UserText
+              color='#97979B'
+              fontSize={14}
+              $lineHeight={18}
+              fontWeight={500}
+            >
+              {nickName}
+            </UserText>
+          </UserNameContainer>
           <UserText
-            fontSize={16}
-            $lineHeight={20}
-            fontWeight={500}
+            color='#55555C'
+            fontSize={13}
+            $lineHeight={16}
+            fontWeight={400}
           >
-            {name}
+            {currentLocale === 'en'
+              ? formatDepartmentsEN(department)
+              : departments[department]}
           </UserText>
-          <UserText
-            color='#97979B'
-            fontSize={14}
-            $lineHeight={18}
-            fontWeight={500}
-          >
-            {nickName}
-          </UserText>
-        </UserNameContainer>
-        <UserText
-          color='#55555C'
-          fontSize={13}
-          $lineHeight={16}
-          fontWeight={400}
-        >
-          {currentLocale === 'en'
-            ? formatDepartmentsEN(department)
-            : departments[department]}
-        </UserText>
-      </UserContentContainer>
-    </UserWrapper>
+        </UserContentContainer>
+      </UserWrapper>
+    </StyledLink>
   );
 };
