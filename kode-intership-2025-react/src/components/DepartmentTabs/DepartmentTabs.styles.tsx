@@ -29,11 +29,11 @@ export const TabsContent = styled.li<{
   width: fit-content;
   height: auto;
   padding: 8px 12px;
-  color: ${props =>
-    props.$isActive ? props.theme.textPrimary : props.theme.textAdditional};
+  color: ${({ $isActive, theme }) =>
+    $isActive ? theme.textPrimary : theme.textAdditional};
   font-size: 15px;
 
-  font-weight: ${props => (props.$isActive ? 600 : 500)};
+  font-weight: ${({ $isActive }) => ($isActive ? 600 : 500)};
   line-height: 20px;
   text-align: center;
   cursor: pointer;
@@ -47,16 +47,16 @@ export const TabsContent = styled.li<{
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 2px !important;
+    height: 2px;
     background-color: #6534ff;
-    transform: scaleX(${props => (props.$isActive ? 1 : 0)});
+    transform: scaleX(${({ $isActive }) => ($isActive ? 1 : 0)});
     transform-origin: center;
     transition: transform 0.2s ease-out;
   }
 
   &:hover {
     &::after {
-      transform: scaleX(${props => (props.$isActive ? 1 : 0.2)});
+      transform: scaleX(${({ $isActive }) => ($isActive ? 1 : 0.2)});
     }
   }
 `;

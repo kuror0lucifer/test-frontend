@@ -26,6 +26,7 @@ export const Profile: FC = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (user?.birthday) {
       const date = formatDate(user.birthday, i18n.language);
       const calculatedAge = ageCalculator(user.birthday);
@@ -50,17 +51,17 @@ export const Profile: FC = () => {
         />
         <Button
           variant='themes'
-          bottom={40}
-          right={100}
-          position='fixed'
+          $bottom={40}
+          $right={100}
+          $position='fixed'
           onClick={toggleTheme}
           themeMode={theme}
         />
         <Button
           variant='translate'
-          bottom={40}
-          right={40}
-          position='fixed'
+          $bottom={40}
+          $right={40}
+          $position='fixed'
           lang={i18n.language}
           onClick={() => toggleLang()}
         />

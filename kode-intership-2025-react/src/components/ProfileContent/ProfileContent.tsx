@@ -8,12 +8,7 @@ import {
 import formatPhone from '../../utils/formatPhone';
 import { useTranslation } from 'react-i18next';
 import { PhoneIcon, StarIcon } from '../Icons';
-
-interface ProfileContentProps {
-  phone: string;
-  birthday: string;
-  age: number;
-}
+import { ProfileContentProps } from './props.type';
 
 export const ProfileContent: FC<ProfileContentProps> = ({
   phone,

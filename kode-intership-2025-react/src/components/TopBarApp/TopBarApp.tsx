@@ -1,4 +1,4 @@
-import { FC, useEffect, useState, useRef } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import {
   TopBarAppContainer,
   TopBarAppText,
@@ -7,6 +7,7 @@ import {
 import { Search } from '../Search';
 import { DepartmentTabs } from '../DepartmentTabs';
 import { useTranslation } from 'react-i18next';
+import { useOnlineStatus } from '../../hooks';
 
 const usePrevious = (value: boolean) => {
   const ref = useRef<boolean>(null);
@@ -19,56 +20,41 @@ const usePrevious = (value: boolean) => {
 export const TopBarApp: FC = () => {
   const { t } = useTranslation();
 
-  const [isOffline, setIsOffline] = useState<boolean>(!navigator.onLine);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { isOnline, isLoading, handleDataFetch } = useOnlineStatus();
 
-  const prevIsOffline = usePrevious(isOffline);
-
-  const updateOnlineStatus = () => {
-    setIsOffline(!navigator.onLine);
-  };
+  const prevIsOnline = usePrevious(isOnline);
 
   useEffect(() => {
-    window.addEventListener('online', updateOnlineStatus);
-    window.addEventListener('offline', updateOnlineStatus);
-
-    return () => {
-      window.removeEventListener('online', updateOnlineStatus);
-      window.removeEventListener('offline', updateOnlineStatus);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (prevIsOffline === true && isOffline === false) {
+    if (prevIsOnline === false && isOnline === true) {
       handleDataFetch();
     }
-  }, [isOffline, prevIsOffline]);
+  }, [isOnline, prevIsOnline, handleDataFetch]);
 
-  const handleDataFetch = () => {
-    setIsLoading(true);
+  if (!isOnline) {
+    return (
+      <>
+        <TopBarAppContainer $bgColor='#F44336'>
+          <TopBarAppTitle color='white'>{t('search')}</TopBarAppTitle>
+          <TopBarAppText>{t('noInternet')}</TopBarAppText>
+        </TopBarAppContainer>
+        <DepartmentTabs />
+      </>
+    );
+  }
 
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  };
+  if (isLoading) {
+    return (
+      <>
+        <TopBarAppContainer $bgColor='#6534FF'>
+          <TopBarAppTitle color='white'>{t('search')}</TopBarAppTitle>
+          <TopBarAppText>{t('loadingData')}</TopBarAppText>
+        </TopBarAppContainer>
+        <DepartmentTabs />
+      </>
+    );
+  }
 
-  return isOffline ? (
-    <>
-      <TopBarAppContainer $bgColor='#F44336'>
-        <TopBarAppTitle color='white'>{t('search')}</TopBarAppTitle>
-        <TopBarAppText>{t('noInternet')}</TopBarAppText>
-      </TopBarAppContainer>
-      <DepartmentTabs />
-    </>
-  ) : isLoading ? (
-    <>
-      <TopBarAppContainer $bgColor='#6534FF'>
-        <TopBarAppTitle color='white'>{t('search')}</TopBarAppTitle>
-        <TopBarAppText>{t('loadingData')}</TopBarAppText>
-      </TopBarAppContainer>
-      <DepartmentTabs />
-    </>
-  ) : (
+  return (
     <>
       <TopBarAppContainer>
         <TopBarAppTitle>{t('search')}</TopBarAppTitle>

@@ -14,11 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentSorting } from '../../redux/sorting/selectors';
 import { setSorting } from '../../redux/sorting/slice';
 import { useTranslation } from 'react-i18next';
-
-interface SortingModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
+import { SortingModalProps } from './props.type';
 
 export const SortingModal: FC<Partial<SortingModalProps>> = ({
   isOpen,
@@ -27,6 +23,7 @@ export const SortingModal: FC<Partial<SortingModalProps>> = ({
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const currentSorting = useSelector(selectCurrentSorting);
+
   if (!isOpen) return null;
 
   const handleWrapperClick = (e: React.MouseEvent) => {
@@ -47,9 +44,9 @@ export const SortingModal: FC<Partial<SortingModalProps>> = ({
             <ModalTitle>{t('sorting')}</ModalTitle>
             <Button
               onClose={onClose}
-              position='absolute'
-              top={24}
-              right={24}
+              $position='absolute'
+              $top={24}
+              $right={24}
               variant='close'
             />
             <InputContent>

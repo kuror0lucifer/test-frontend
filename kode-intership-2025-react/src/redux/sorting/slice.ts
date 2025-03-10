@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import SortingState from './types.type';
 
 const initialState: SortingState = {
-  sorting: null,
+  sorting: 'alphabet',
 };
 
 const sortingSlice = createSlice({

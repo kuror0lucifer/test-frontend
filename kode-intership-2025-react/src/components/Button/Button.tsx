@@ -1,52 +1,31 @@
 import { FC } from 'react';
 import { BackButton, CloseButton, OptionButton } from './Button.styles';
 import { BackArrowIcon, CloseButtonIcon } from '../Icons';
-import ThemeType from '../../types/theme.type';
 import { FaRegMoon } from 'react-icons/fa';
 import { FaRegSun } from 'react-icons/fa';
-
-interface ButtonProps {
-  position: string;
-  top: number;
-  right: number;
-  left: number;
-  bottom: number;
-  onClose: () => void;
-  onClick: () => void;
-  variant: 'back' | 'close' | 'translate' | 'themes';
-  lang: string;
-  themeMode: ThemeType;
-}
+import { ButtonProps } from './props.type';
 
 export const Button: FC<Partial<ButtonProps>> = ({
-  position,
-  top,
-  right,
-  left,
-  bottom,
   onClose,
   onClick,
   variant,
   lang,
   themeMode,
+  ...styleProps
 }) => {
   return (
     <>
       {variant === 'close' && (
         <CloseButton
+          {...styleProps}
           onClick={onClose}
-          $position={position}
-          $top={top}
-          $right={right}
         >
           <CloseButtonIcon color='#C3C3C6' />
         </CloseButton>
       )}
       {variant === 'back' && (
         <BackButton
-          $position={position}
-          $top={top}
-          $left={left}
+          {...styleProps}
           onClick={onClick}
         >
           <BackArrowIcon />
@@ -54,9 +33,7 @@ export const Button: FC<Partial<ButtonProps>> = ({
       )}
       {variant === 'translate' && (
         <OptionButton
-          $position={position}
-          $bottom={bottom}
-          $right={right}
+          {...styleProps}
           onClick={onClick}
         >
           <span>{lang === 'en' ? 'EN' : 'RU'}</span>
@@ -64,9 +41,7 @@ export const Button: FC<Partial<ButtonProps>> = ({
       )}
       {variant === 'themes' && (
         <OptionButton
-          $position={position}
-          $bottom={bottom}
-          $right={right}
+          {...styleProps}
           onClick={onClick}
         >
           {themeMode === 'dark' ? (

@@ -28,10 +28,10 @@ export const Icon = styled.img.attrs<ImgHTMLAttributes<HTMLImageElement>>({})`
 `;
 
 export const BackButton = styled.button.attrs<Partial<ButtonProps>>({})`
-  position: ${props => (props.$position ? props.$position : 'static')};
-  top: ${props => (props.$top ? `${props.$top}px` : '0')};
-  right: ${props => (props.$right ? `${props.$right}px` : '0')};
-  left: ${props => (props.$left ? `${props.$left}px` : '0')};
+  position: ${({ $position }) => ($position ? $position : 'static')};
+  top: ${({ $top }) => ($top ? `${$top}px` : '0')};
+  right: ${({ $right }) => ($right ? `${$right}px` : '0')};
+  left: ${({ $left }) => ($left ? `${$left}px` : '0')};
   width: 24px;
   height: 24px;
   border: none;
@@ -51,9 +51,9 @@ export const BackButton = styled.button.attrs<Partial<ButtonProps>>({})`
 export const OptionButtonText = styled.span``;
 
 export const OptionButton = styled.button.attrs<Partial<ButtonProps>>({})`
-  position: ${props => (props.$position ? props.$position : 'static')};
-  right: ${props => (props.$right ? `${props.$right}px` : '0')};
-  bottom: ${props => (props.$bottom ? `${props.$bottom}px` : '0')};
+  position: ${({ $position }) => ($position ? $position : 'static')};
+  right: ${({ $right }) => ($right ? `${$right}px` : '0')};
+  bottom: ${({ $bottom }) => ($bottom ? `${$bottom}px` : '0')};
   width: 40px;
   height: 40px;
   border-radius: 50%;

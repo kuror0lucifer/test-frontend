@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import { AppRoutes } from './routes/routes';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
 import themes from './constants/themes';
 import { useTheme } from './hooks';
 

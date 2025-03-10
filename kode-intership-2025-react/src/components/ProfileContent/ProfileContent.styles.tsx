@@ -18,7 +18,7 @@ export const ContentWrapper = styled.div<{
   width: 100%;
   height: auto;
   display: flex;
-  justify-content: ${props => props.$justifyContent};
+  justify-content: ${({ $justifyContent }) => $justifyContent};
   align-items: center;
   padding: 20px 2px;
 
@@ -41,23 +41,21 @@ export const InfoContainer = styled.div`
   gap: 14px;
 `;
 
-export const InfoText = styled.span<
-  Partial<{
-    color: string;
-    cursor: string;
-    $phone: boolean;
-  }>
->`
+export const InfoText = styled.span<{
+  color?: string;
+  cursor?: string;
+  $phone?: boolean;
+}>`
   font-size: 16px;
   font-weight: 500;
   line-height: 20px;
-  color: ${props => (props.color ? props.color : props.theme.textPrimary)};
-  cursor: ${props => props.cursor};
-  text-decoration: ${props => props.$phone && 'none'};
+  color: ${({ color, theme }) => (color ? color : theme.textPrimary)};
+  cursor: ${({ cursor }) => cursor};
+  text-decoration: ${({ $phone }) => $phone && 'none'};
   transition: color 0.3s ease-in-out;
 
   &:hover {
-    color: ${props => props.$phone && '#6534ff'};
+    color: ${({ $phone }) => $phone && '#6534ff'};
   }
 
   span,

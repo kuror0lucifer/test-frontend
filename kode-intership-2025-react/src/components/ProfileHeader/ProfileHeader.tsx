@@ -3,17 +3,11 @@ import { Avatar, Wrapper } from './ProfileHeader.styles';
 import { UserContentContainer, UserNameContainer, UserText } from '../UserCard';
 import { Button } from '../Button';
 import blankAvatar from '../../constants/blankAvatar';
-import { departments, DepartmentsKeys } from '../../types/departments';
+import { departments } from '../../types/departments';
 import { useNavigate } from 'react-router-dom';
 import formatDepartmentsEN from '../../utils/formatDepartmentsEN';
 import { useTranslation } from 'react-i18next';
-
-interface ProfileHeaderProps {
-  fullName: string;
-  avatar: string;
-  department: DepartmentsKeys;
-  nickName: string;
-}
+import { ProfileHeaderProps } from './props.type';
 
 export const ProfileHeader: FC<ProfileHeaderProps> = ({
   fullName,
@@ -33,15 +27,19 @@ export const ProfileHeader: FC<ProfileHeaderProps> = ({
   }, [avatar]);
 
   const handleClickBack = () => {
-    navigate(-1);
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate('/', { replace: true });
+    }
   };
 
   return (
     <Wrapper>
       <Button
-        position='absolute'
-        top={24}
-        left={24}
+        $position='absolute'
+        $top={24}
+        $left={24}
         variant='back'
         onClick={handleClickBack}
       />

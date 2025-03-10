@@ -1,92 +1,44 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { Input, SearchContainer, SearchWrapper } from './Search.styles';
 import { SortingModal } from '../SortingModal';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectAllUsers } from '../../redux/users/selectors';
-import { setFilteredUsers } from '../../redux/users/slice';
 import { setSorting } from '../../redux/sorting/slice';
 import { selectCurrentSorting } from '../../redux/sorting/selectors';
 import { useTranslation } from 'react-i18next';
 import { SearchGlass } from '../Icons';
 import { SortingIcon } from '../Icons';
-import { useSearchParams } from 'react-router-dom';
-
-interface IFormInputs {
-  query: string;
-}
+import { IFormInputs } from './props.type';
+import { useSearch } from '../../hooks';
 
 export const Search: FC = () => {
-  const dispatch = useDispatch();
-  const users = useSelector(selectAllUsers);
-  const currentSorting = useSelector(selectCurrentSorting);
-  const { register, watch, setValue } = useForm<IFormInputs>();
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const { register, setValue, watch } = useForm<IFormInputs>();
   const searchValue = watch('query', '').toLowerCase().trim();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const currentSorting = useSelector(selectCurrentSorting);
+  const dispatch = useDispatch();
   const { t } = useTranslation();
   const [isActive, setIsActive] = useState<boolean>(false);
 
+  const { queryFromUrl } = useSearch(searchValue);
+
   useEffect(() => {
-    const queryFromUrl = searchParams.get('query') || '';
     if (queryFromUrl) {
       setValue('query', queryFromUrl);
-      dispatch(
-        setFilteredUsers(
-          users.filter(
-            user =>
-              user.firstName.toLowerCase().includes(queryFromUrl) ||
-              user.lastName.toLowerCase().includes(queryFromUrl) ||
-              user.userTag.toLowerCase().includes(queryFromUrl)
-          )
-        )
-      );
     }
-  }, [searchParams, dispatch, users, setValue]);
+  }, [queryFromUrl, setValue]);
 
-  const searchQuery = () => {
-    if (!searchValue) {
-      dispatch(setFilteredUsers(users));
-      return;
-    }
-
-    const filteredUsers = users.filter(
-      user =>
-        user.firstName.toLowerCase().includes(searchValue) ||
-        user.lastName.toLowerCase().includes(searchValue) ||
-        user.userTag.toLowerCase().includes(searchValue)
-    );
-
-    dispatch(setFilteredUsers(filteredUsers));
-  };
-
-  useEffect(() => {
-    const delayDebounce = setTimeout(() => {
-      searchQuery();
-      if (searchValue) {
-        setSearchParams({ query: searchValue });
-      } else {
-        setSearchParams({});
-      }
-    }, 500);
-
-    return () => clearTimeout(delayDebounce);
-  }, [searchValue, users, setSearchParams]);
-
-  const openModal = () => {
+  const openModal = useCallback(() => {
     setIsOpen(true);
     if (currentSorting === null) {
       dispatch(setSorting('alphabet'));
     }
-  };
-  const closeModal = () => setIsOpen(false);
+  }, [currentSorting, dispatch]);
+
+  const closeModal = useCallback(() => setIsOpen(false), []);
 
   useEffect(() => {
-    if (currentSorting === 'birthday') {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
+    setIsActive(currentSorting === 'birthday');
   }, [currentSorting]);
 
   return (

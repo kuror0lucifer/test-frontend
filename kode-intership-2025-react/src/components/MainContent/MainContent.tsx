@@ -28,8 +28,6 @@ export const MainContent: FC = () => {
     refetchIntervalInBackground: true,
   });
 
-  console.log(error);
-
   useEffect(() => {
     if (data) {
       dispatch(setUsersData(data));
@@ -59,6 +57,19 @@ export const MainContent: FC = () => {
     return result;
   }, [users, activeTab, currentSorting]);
 
+  const renderUserCards = (users: User[]) => {
+    return users.map((user: User) => (
+      <UserCard
+        key={user.id}
+        id={user.id}
+        avatar={user.avatarUrl}
+        department={user.department}
+        name={`${user.firstName} ${user.lastName}`}
+        nickName={user.userTag.toLowerCase()}
+      />
+    ));
+  };
+
   const isBirthdaySorting = !Array.isArray(filteredUsers);
 
   return (
@@ -70,53 +81,25 @@ export const MainContent: FC = () => {
       ) : error ? (
         <Error onRetry={refetch} />
       ) : currentSorting === 'alphabet' && !isBirthdaySorting ? (
-        !isBirthdaySorting && filteredUsers?.length === 0 ? (
+        filteredUsers?.length === 0 ? (
           <EmptySearchContent />
         ) : (
-          (filteredUsers || []).map((user: User) => (
-            <UserCard
-              key={user.id}
-              id={user.id}
-              avatar={user.avatarUrl}
-              department={user.department}
-              name={`${user.firstName} ${user.lastName}`}
-              nickName={user.userTag.toLowerCase()}
-            />
-          ))
+          renderUserCards(filteredUsers)
         )
       ) : currentSorting === 'birthday' && isBirthdaySorting ? (
-        isBirthdaySorting &&
-        filteredUsers.birthdayThisYear.length === 0 &&
-        filteredUsers.birthdayNextYear.length === 0 ? (
+        (filteredUsers?.birthdayThisYear.length ||
+          filteredUsers?.birthdayNextYear.length) === 0 ? (
           <EmptySearchContent />
         ) : (
           <>
-            {filteredUsers?.birthdayThisYear?.map((user: User) => (
-              <UserCard
-                key={user.id}
-                id={user.id}
-                avatar={user.avatarUrl}
-                department={user.department}
-                name={`${user.firstName} ${user.lastName}`}
-                nickName={user.userTag.toLowerCase()}
-              />
-            ))}
+            {renderUserCards(filteredUsers?.birthdayThisYear || [])}
             {filteredUsers.birthdayNextYear.length ||
             filteredUsers.birthdayThisYear.length ? (
               <BirthdaySeparator />
             ) : (
               <></>
             )}
-            {filteredUsers?.birthdayNextYear?.map((user: User) => (
-              <UserCard
-                key={user.id}
-                id={user.id}
-                avatar={user.avatarUrl}
-                department={user.department}
-                name={`${user.firstName} ${user.lastName}`}
-                nickName={user.userTag.toLowerCase()}
-              />
-            ))}
+            {renderUserCards(filteredUsers?.birthdayNextYear || [])}
           </>
         )
       ) : (

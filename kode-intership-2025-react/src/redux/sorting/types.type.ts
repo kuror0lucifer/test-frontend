@@ -1,5 +1,5 @@
 interface SortingState {
-  sorting: 'alphabet' | 'birthday' | null;
+  sorting: 'alphabet' | 'birthday';
 }
 
 export default SortingState;

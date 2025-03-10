@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState, WheelEvent } from 'react';
+import { FC, memo, useEffect, useRef, useState, WheelEvent } from 'react';
 import { TabsContent, TabsWrapper } from './DepartmentTabs.styles';
 import { departments, DepartmentsKeys } from '../../types/departments';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,10 +19,9 @@ export const DepartmentTabs: FC = () => {
   const currentLocale = i18n.language;
 
   const handleTabClick = (department: DepartmentsKeys) => {
-    setCurrentTab(prev => (prev === department ? null : department));
+    setCurrentTab(department);
     dispatch(setActiveTab(department));
   };
-
   const handleWheel = (e: unknown) => {
     const WheelEvent = e as WheelEvent<HTMLDivElement>;
     if (scrollRef.current) {
@@ -43,19 +42,21 @@ export const DepartmentTabs: FC = () => {
     };
   }, []);
 
+  const TabsContentMemo = memo(TabsContent);
+
   return (
     <TabsWrapper
       ref={scrollRef}
       onWheel={handleWheel}
     >
-      {tabs.map((key, index) => (
-        <TabsContent
-          key={index}
+      {tabs.map(key => (
+        <TabsContentMemo
+          key={key}
           $isActive={currentTab === key}
           onClick={() => handleTabClick(key)}
         >
           {currentLocale === 'en' ? formatDepartmentsEN(key) : departments[key]}
-        </TabsContent>
+        </TabsContentMemo>
       ))}
     </TabsWrapper>
   );

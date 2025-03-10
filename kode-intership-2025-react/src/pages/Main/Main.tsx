@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { TopBarApp } from '../../components/TopBarApp';
-import { MainContent } from '../../components/MainContent/MainContent';
+import { MainContent } from '../../components/MainContent';
 import { Button } from '../../components/Button';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../../hooks';
@@ -21,17 +21,17 @@ export const Main: FC = () => {
       <MainContent />
       <Button
         variant='themes'
-        bottom={40}
-        right={100}
-        position='fixed'
+        $bottom={40}
+        $right={100}
+        $position='fixed'
         onClick={toggleTheme}
         themeMode={theme}
       />
       <Button
         variant='translate'
-        bottom={40}
-        right={40}
-        position='fixed'
+        $bottom={40}
+        $right={40}
+        $position='fixed'
         lang={i18n.language}
         onClick={() => toggleLang()}
       />

@@ -6,12 +6,12 @@ import {
 } from './BirtdaySeparator.styles';
 
 export const BirthdaySeparator: FC = () => {
-  const nextYear = new Date().getFullYear();
+  const nextYear = new Date().getFullYear() + 1;
 
   return (
     <Wrapper>
       <LineSeparator />
-      <TextSeparator>{nextYear + 1}</TextSeparator>
+      <TextSeparator>{nextYear}</TextSeparator>
       <LineSeparator />
     </Wrapper>
   );

@@ -19,23 +19,18 @@ const sortByBirthday = (users: User[]) => {
     }
   });
 
-  birthdayThisYear.sort((a, b) => {
+  const sorting = (a: User, b: User) => {
     const monthA = new Date(a.birthday).getMonth();
     const dayA = new Date(a.birthday).getDate();
     const monthB = new Date(b.birthday).getMonth();
     const dayB = new Date(b.birthday).getDate();
     if (monthA !== monthB) return monthA - monthB;
     return dayA - dayB;
-  });
+  };
 
-  birthdayNextYear.sort((a, b) => {
-    const monthA = new Date(a.birthday).getMonth();
-    const dayA = new Date(a.birthday).getDate();
-    const monthB = new Date(b.birthday).getMonth();
-    const dayB = new Date(b.birthday).getDate();
-    if (monthA !== monthB) return monthA - monthB;
-    return dayA - dayB;
-  });
+  birthdayThisYear.sort(sorting);
+
+  birthdayNextYear.sort(sorting);
 
   return { birthdayThisYear, birthdayNextYear };
 };

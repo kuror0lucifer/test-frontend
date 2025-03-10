@@ -7,19 +7,11 @@ import {
   UserText,
   UserWrapper,
 } from './UserCard.styles';
-import { departments, DepartmentsKeys } from '../../types/departments';
+import { departments } from '../../types/departments';
 import blankAvatar from '../../constants/blankAvatar';
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import formatDepartmentsEN from '../../utils/formatDepartmentsEN';
-
-interface UserCardProps {
-  id: string;
-  avatar: string;
-  name: string;
-  nickName: string;
-  department: DepartmentsKeys;
-}
+import { UserCardProps } from './props.type';
 
 export const UserCard: FC<UserCardProps> = ({
   id,
@@ -29,7 +21,6 @@ export const UserCard: FC<UserCardProps> = ({
   department,
 }) => {
   const [imgSrc, setImgSrc] = useState<string | null>(blankAvatar);
-  const navigate = useNavigate();
   const { i18n } = useTranslation();
   const currentLocale = i18n.language;
 
@@ -40,17 +31,9 @@ export const UserCard: FC<UserCardProps> = ({
     img.onerror = () => setImgSrc(blankAvatar);
   }, [avatar]);
 
-  const handleClick = () => {
-    navigate(`/user/${id}`);
-    window.scrollTo(0, 0);
-  };
-
   return (
-    <StyledLink
-      to={`/user/${id}`}
-      onClick={() => window.scrollTo(0, 0)}
-    >
-      <UserWrapper onClick={handleClick}>
+    <StyledLink to={`/user/${id}`}>
+      <UserWrapper>
         <UserAvatar
           src={imgSrc || blankAvatar}
           alt={name}

@@ -8,11 +8,7 @@ import {
 } from './Error.styles';
 import baseUrl from '../../constants/baseUrl';
 import { useTranslation } from 'react-i18next';
-
-interface ErrorProps {
-  onRetry: () => void;
-  isFetching: boolean;
-}
+import { ErrorProps } from './props.type';
 
 export const Error: FC<Partial<ErrorProps>> = ({ onRetry }) => {
   const { t } = useTranslation();

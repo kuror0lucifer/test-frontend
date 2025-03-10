@@ -56,7 +56,7 @@ export const Input = styled.input.attrs<InputHTMLAttributes<HTMLInputElement>>({
 `;
 
 export const Icon = styled.img.attrs<IconProps>({})`
-  width: ${props => props.sizes}px;
-  height: ${props => props.sizes}px;
-  cursor: ${props => props.cursor};
+  width: ${({ sizes }) => sizes}px;
+  height: ${({ sizes }) => sizes}px;
+  cursor: ${({ cursor }) => cursor};
 `;

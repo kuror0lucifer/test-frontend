@@ -37,9 +37,9 @@ export const UserContentContainer = styled.div<{
   height: auto;
   display: flex;
 
-  align-items: ${props => props.$alignItems || 'flex-start'};
-  gap: ${props => props.$gap || 6}px;
-  flex-direction: ${props => props.$flexDirection || 'column'};
+  align-items: ${({ $alignItems }) => $alignItems || 'flex-start'};
+  gap: ${({ $gap }) => $gap || 6}px;
+  flex-direction: ${({ $flexDirection }) => $flexDirection || 'column'};
 `;
 
 export const UserNameContainer = styled.div`
@@ -66,10 +66,10 @@ export const UserText = styled.span<{
   fontWeight?: number;
   $lineHeight?: number;
 }>`
-  font-size: ${props => props.fontSize}px;
-  color: ${props => (props.color ? props.color : props.theme.textPrimary)};
-  font-weight: ${props => props.fontWeight};
-  line-height: ${props => props.$lineHeight}px;
+  font-size: ${({ fontSize }) => fontSize}px;
+  color: ${({ color, theme }) => (color ? color : theme.textPrimary)};
+  font-weight: ${({ fontWeight }) => fontWeight};
+  line-height: ${({ $lineHeight }) => $lineHeight}px;
 
   transition: color 0.3s ease-in-out;
 `;
