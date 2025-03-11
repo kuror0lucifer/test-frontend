@@ -59,4 +59,10 @@ export const TabsContent = styled.li<{
       transform: scaleX(${({ $isActive }) => ($isActive ? 1 : 0.2)});
     }
   }
+
+  &:active {
+    &::after {
+      transform: scaleX(${({ $isActive }) => ($isActive ? 1 : 0.5)});
+    }
+  }
 `;

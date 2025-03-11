@@ -18,7 +18,7 @@ export const Search: FC = () => {
   const currentSorting = useSelector(selectCurrentSorting);
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const [isActive, setIsActive] = useState<boolean>(false);
+  const isActive = currentSorting === 'birthday';
 
   const { queryFromUrl } = useSearch(searchValue);
 
@@ -26,7 +26,7 @@ export const Search: FC = () => {
     if (queryFromUrl) {
       setValue('query', queryFromUrl);
     }
-  }, [queryFromUrl, setValue]);
+  }, [queryFromUrl]);
 
   const openModal = useCallback(() => {
     setIsOpen(true);
@@ -36,10 +36,6 @@ export const Search: FC = () => {
   }, [currentSorting, dispatch]);
 
   const closeModal = useCallback(() => setIsOpen(false), []);
-
-  useEffect(() => {
-    setIsActive(currentSorting === 'birthday');
-  }, [currentSorting]);
 
   return (
     <>

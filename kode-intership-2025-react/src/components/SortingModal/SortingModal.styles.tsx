@@ -25,7 +25,7 @@ export const Modal = styled.div`
   @keyframes fade-in-scale {
     from {
       opacity: 0;
-      transform: scale(0.9);
+      transform: scale(0.8);
     }
     to {
       opacity: 1;
@@ -66,12 +66,12 @@ export const Radio = styled.input.attrs<InputHTMLAttributes<HTMLInputElement>>({
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  border: 2px solid #6534ff;
+  border: 2px solid ${({ theme }) => theme.optional};
   transition: 0.2s all ease-in;
   cursor: pointer;
 
   &:checked {
-    border: 6px solid #6534ff;
+    border: 6px solid ${({ theme }) => theme.optional};
   }
 `;
 
@@ -93,4 +93,8 @@ export const InputContent = styled.div`
   align-items: center;
   gap: 10px;
   padding-bottom: 21px;
+
+  &:hover ${Radio}:not(:checked) {
+    border: 3px solid ${({ theme }) => theme.optional};
+  }
 `;

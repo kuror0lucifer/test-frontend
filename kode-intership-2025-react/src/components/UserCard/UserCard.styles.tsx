@@ -26,6 +26,10 @@ export const UserWrapper = styled.div`
   &:hover {
     transform: translateY(-5px);
   }
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;
 
 export const UserContentContainer = styled.div<{

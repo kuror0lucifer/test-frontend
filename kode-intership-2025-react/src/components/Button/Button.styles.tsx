@@ -48,7 +48,11 @@ export const BackButton = styled.button.attrs<Partial<ButtonProps>>({})`
   }
 `;
 
-export const OptionButtonText = styled.span``;
+export const OptionButtonText = styled.span`
+  font-size: 18px;
+  font-weight: 600;
+  color: #050510;
+`;
 
 export const OptionButton = styled.button.attrs<Partial<ButtonProps>>({})`
   position: ${({ $position }) => ($position ? $position : 'static')};
@@ -66,7 +70,7 @@ export const OptionButton = styled.button.attrs<Partial<ButtonProps>>({})`
 
   z-index: 10000;
 
-  transition: background-color 0.5s ease-in-out;
+  transition: background-color 0.5s ease-in-out, transform 0.3s ease-in-out;
   animation: appearance 0.6s ease-in;
 
   @keyframes appearance {
@@ -78,10 +82,8 @@ export const OptionButton = styled.button.attrs<Partial<ButtonProps>>({})`
     }
   }
 
-  span {
-    font-size: 18px;
-    font-weight: 600;
-    color: #050510;
+  &:active {
+    transform: scale(0.9);
   }
 
   &:hover {

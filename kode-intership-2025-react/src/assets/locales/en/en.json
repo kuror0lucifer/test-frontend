@@ -9,7 +9,7 @@
   "criticalErrorText": "We'll try to fix it quickly",
   "criticalErrorReload": "Try again",
   "sorting": "Sorting",
-  "alphabetically": "Alphabetically",
+  "alphabetically": "By alphabet",
   "by_birthday": "By birthday",
   "age": "{{count}} y.o."
 }

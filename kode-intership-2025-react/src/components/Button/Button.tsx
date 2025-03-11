@@ -1,5 +1,10 @@
 import { FC } from 'react';
-import { BackButton, CloseButton, OptionButton } from './Button.styles';
+import {
+  BackButton,
+  CloseButton,
+  OptionButton,
+  OptionButtonText,
+} from './Button.styles';
 import { BackArrowIcon, CloseButtonIcon } from '../Icons';
 import { FaRegMoon } from 'react-icons/fa';
 import { FaRegSun } from 'react-icons/fa';
@@ -36,7 +41,7 @@ export const Button: FC<Partial<ButtonProps>> = ({
           {...styleProps}
           onClick={onClick}
         >
-          <span>{lang === 'en' ? 'EN' : 'RU'}</span>
+          <OptionButtonText>{lang === 'en' ? 'EN' : 'RU'}</OptionButtonText>
         </OptionButton>
       )}
       {variant === 'themes' && (

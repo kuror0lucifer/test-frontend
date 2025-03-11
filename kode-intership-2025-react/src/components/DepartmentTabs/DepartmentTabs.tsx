@@ -1,4 +1,4 @@
-import { FC, memo, useEffect, useRef, useState, WheelEvent } from 'react';
+import { FC, useEffect, useRef, useState, WheelEvent } from 'react';
 import { TabsContent, TabsWrapper } from './DepartmentTabs.styles';
 import { departments, DepartmentsKeys } from '../../types/departments';
 import { useDispatch, useSelector } from 'react-redux';
@@ -42,21 +42,19 @@ export const DepartmentTabs: FC = () => {
     };
   }, []);
 
-  const TabsContentMemo = memo(TabsContent);
-
   return (
     <TabsWrapper
       ref={scrollRef}
       onWheel={handleWheel}
     >
       {tabs.map(key => (
-        <TabsContentMemo
+        <TabsContent
           key={key}
           $isActive={currentTab === key}
           onClick={() => handleTabClick(key)}
         >
           {currentLocale === 'en' ? formatDepartmentsEN(key) : departments[key]}
-        </TabsContentMemo>
+        </TabsContent>
       ))}
     </TabsWrapper>
   );

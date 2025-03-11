@@ -9,6 +9,10 @@ const themes = {
       textPrimary: '#fff',
       background: '#c5c5c5',
       icon: '#9b9b9c',
+      hover: {
+        primary: '#9b9b9c',
+        additional: '#6f6f6f',
+      },
     },
     button: {
       primary: '#272626',
@@ -28,6 +32,10 @@ const themes = {
       textPrimary: '#000',
       background: '#F7F7F8',
       icon: '#C3C3C6',
+      hover: {
+        primary: '#C3C3C6',
+        additional: '#969698',
+      },
     },
     button: {
       primary: '#F7F7F8',

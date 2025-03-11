@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { selectAllUsers } from '../redux/users/selectors';
@@ -11,32 +11,49 @@ export const useSearch = (searchValue: string) => {
 
   const queryFromUrl = searchParams.get('query') || '';
 
+  const [debouncedSearchValue, setDebouncedSearchValue] =
+    useState<string>(searchValue);
+
+  useEffect(() => {
+    const searchValueDebounce = setTimeout(() => {
+      setDebouncedSearchValue(searchValue);
+    }, 500);
+
+    return () => clearTimeout(searchValueDebounce);
+  }, [searchValue]);
+
   const filteredUsers = useCallback(() => {
-    if (!searchValue) return users;
-    return users.filter(
-      user =>
-        user.firstName.toLowerCase().includes(searchValue) ||
-        user.lastName.toLowerCase().includes(searchValue) ||
-        user.userTag.toLowerCase().includes(searchValue)
-    );
-  }, [users, searchValue]);
+    if (!debouncedSearchValue) return users;
+    return users.filter(user => {
+      const firstNameMatch = user.firstName
+        .toLowerCase()
+        .includes(debouncedSearchValue);
+      const lastNameMatch = user.lastName
+        .toLowerCase()
+        .includes(debouncedSearchValue);
+      const userTagMatch = user.userTag
+        .toLowerCase()
+        .includes(debouncedSearchValue);
+      const fullNameMatch = `${user.firstName} ${user.lastName}`
+        .toLowerCase()
+        .includes(debouncedSearchValue);
+
+      return firstNameMatch || lastNameMatch || fullNameMatch || userTagMatch;
+    });
+  }, [users, debouncedSearchValue]);
 
   const handleSearch = useCallback(() => {
-    if (searchValue) {
-      setSearchParams({ query: searchValue });
+    if (debouncedSearchValue) {
+      setSearchParams({ query: debouncedSearchValue });
     } else {
       setSearchParams({});
     }
     dispatch(setFilteredUsers(filteredUsers()));
-  }, [searchValue, setSearchParams, dispatch, filteredUsers]);
+  }, [debouncedSearchValue, setSearchParams, dispatch, filteredUsers]);
 
   useEffect(() => {
-    const delayDebounce = setTimeout(() => {
-      handleSearch();
-    }, 500);
-
-    return () => clearTimeout(delayDebounce);
-  }, [searchValue, handleSearch]);
+    handleSearch();
+  }, [debouncedSearchValue, handleSearch]);
 
   return {
     queryFromUrl,

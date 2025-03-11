@@ -49,7 +49,7 @@ export const MainContent: FC = () => {
     }
 
     if (currentSorting === 'alphabet') {
-      result.sort((a, b) => a.lastName.localeCompare(b.lastName));
+      result.sort((a, b) => a.firstName.localeCompare(b.firstName));
     } else if (currentSorting === 'birthday') {
       result = sortByBirthday(result);
     }
