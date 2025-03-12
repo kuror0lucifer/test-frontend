@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from 'react';
+import { FC, useEffect } from 'react';
 import {
   TopBarAppContainer,
   TopBarAppText,
@@ -7,20 +7,13 @@ import {
 import { Search } from '../Search';
 import { DepartmentTabs } from '../DepartmentTabs';
 import { useTranslation } from 'react-i18next';
-import { useOnlineStatus } from '../../hooks';
-
-const usePrevious = (value: boolean) => {
-  const ref = useRef<boolean>(null);
-  useEffect(() => {
-    ref.current = value;
-  }, [value]);
-  return ref.current;
-};
+import { useOnlineStatus, usePrevious } from '../../hooks';
 
 export const TopBarApp: FC = () => {
   const { t } = useTranslation();
 
-  const { isOnline, isLoading, handleDataFetch } = useOnlineStatus();
+  const { isOnline, isLoading, handleDataFetch, wasOffline } =
+    useOnlineStatus();
 
   const prevIsOnline = usePrevious(isOnline);
 
@@ -42,7 +35,7 @@ export const TopBarApp: FC = () => {
     );
   }
 
-  if (isLoading) {
+  if (isLoading && wasOffline) {
     return (
       <>
         <TopBarAppContainer $bgColor='#6534FF'>

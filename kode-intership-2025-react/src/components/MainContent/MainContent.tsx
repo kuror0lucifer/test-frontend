@@ -17,9 +17,11 @@ import { BirthdaySeparator } from '../BirthdaySeparator';
 
 export const MainContent: FC = () => {
   const dispatch = useDispatch();
+
   const activeTab = useSelector(selectActiveTab);
   const users = useSelector(selectAllFilteredUsers);
   const currentSorting = useSelector(selectCurrentSorting);
+
   const { data, error, isLoading, refetch, isFetching } = useQuery({
     queryKey: ['users'],
     queryFn: fetchAllUsers,
