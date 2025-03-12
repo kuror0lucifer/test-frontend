@@ -67,7 +67,7 @@ export const Radio = styled.input.attrs<InputHTMLAttributes<HTMLInputElement>>({
   height: 20px;
   border-radius: 50%;
   border: 2px solid ${({ theme }) => theme.optional};
-  transition: 0.2s all ease-in;
+  transition: all 0.3s ease-in-out;
   cursor: pointer;
 
   &:checked {
@@ -96,5 +96,6 @@ export const InputContent = styled.div`
 
   &:hover ${Radio}:not(:checked) {
     border: 3px solid ${({ theme }) => theme.optional};
+    transition: border 0.3s ease-in-out;
   }
 `;

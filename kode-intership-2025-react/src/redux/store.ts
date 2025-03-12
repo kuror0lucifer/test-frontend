@@ -2,23 +2,12 @@ import { configureStore } from '@reduxjs/toolkit';
 import usersReducer from './users/slice';
 import activeTabReducer from './activeTab/slice';
 import sortingReducer from './sorting/slice';
-import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
-
-const usersPersistConfig = {
-  key: 'users',
-  storage,
-};
-
-const activeTabPersistConfig = {
-  key: 'activeTab',
-  storage,
-};
-
-const sortingPersistConfig = {
-  key: 'sorting',
-  storage,
-};
+import {
+  usersPersistConfig,
+  activeTabPersistConfig,
+  sortingPersistConfig,
+} from './config/persistConfig';
 
 const persistedUsersReducer = persistReducer(usersPersistConfig, usersReducer);
 const persistedActiveTabReducer = persistReducer(
@@ -36,6 +25,12 @@ export const store = configureStore({
     activeTab: persistedActiveTabReducer,
     sorting: persistedSortingReducer,
   },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ['persist/PERSIST'],
+      },
+    }),
 });
 
 export const persistor = persistStore(store);
