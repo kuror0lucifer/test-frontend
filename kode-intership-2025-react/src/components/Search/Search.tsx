@@ -15,6 +15,7 @@ export const Search: FC = () => {
   const { register, setValue, watch } = useForm<IFormInputs>();
   const searchValue = watch('query', '').toLowerCase().trim();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isFocused, setIsFocused] = useState<boolean>(false);
   const currentSorting = useSelector(selectCurrentSorting);
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -41,10 +42,12 @@ export const Search: FC = () => {
     <>
       <SearchContainer>
         <SearchWrapper>
-          <SearchGlass />
+          <SearchGlass isFocused={isFocused} />
           <Input
             {...register('query', { required: false })}
             placeholder={t('placeholder')}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
           />
           <SortingIcon
             onClick={openModal}

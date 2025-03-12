@@ -9,6 +9,7 @@ const themes = {
       textPrimary: '#fff',
       background: '#c5c5c5',
       icon: '#9b9b9c',
+      iconFocused: '#6d6d6d',
       hover: {
         primary: '#9b9b9c',
         additional: '#6f6f6f',
@@ -32,6 +33,7 @@ const themes = {
       textPrimary: '#000',
       background: '#F7F7F8',
       icon: '#C3C3C6',
+      iconFocused: '#050510',
       hover: {
         primary: '#C3C3C6',
         additional: '#969698',
