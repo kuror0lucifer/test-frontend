@@ -1,4 +1,3 @@
-import { ImgHTMLAttributes } from 'react';
 import styled from 'styled-components';
 import { ButtonProps } from './props.type';
 
@@ -20,11 +19,6 @@ export const CloseButton = styled.button.attrs<Partial<ButtonProps>>({})`
   &:hover {
     background-color: ${({ theme }) => theme.button.additional};
   }
-`;
-
-export const Icon = styled.img.attrs<ImgHTMLAttributes<HTMLImageElement>>({})`
-  width: 10px;
-  height: 10px;
 `;
 
 export const BackButton = styled.button.attrs<Partial<ButtonProps>>({})`

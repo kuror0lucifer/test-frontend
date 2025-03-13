@@ -1,6 +1,5 @@
-import { FormHTMLAttributes, InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes } from 'react';
 import styled from 'styled-components';
-import { IconProps } from './props.type';
 
 export const SearchContainer = styled.div`
   max-width: 100%;
@@ -21,11 +20,6 @@ export const SearchWrapper = styled.div`
   background-color: ${({ theme }) => theme.search.background};
   transition: background-color 0.3s ease-in-out;
   border-radius: 16px;
-`;
-
-export const Form = styled.form.attrs<FormHTMLAttributes<HTMLFormElement>>({})`
-  width: 100%;
-  height: auto;
 `;
 
 export const Input = styled.input.attrs<InputHTMLAttributes<HTMLInputElement>>({
@@ -53,10 +47,4 @@ export const Input = styled.input.attrs<InputHTMLAttributes<HTMLInputElement>>({
   &:focus {
     caret-color: #6534ff;
   }
-`;
-
-export const Icon = styled.img.attrs<IconProps>({})`
-  width: ${({ sizes }) => sizes}px;
-  height: ${({ sizes }) => sizes}px;
-  cursor: ${({ cursor }) => cursor};
 `;

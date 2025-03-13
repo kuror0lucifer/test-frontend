@@ -22,11 +22,3 @@ const fetchUsers = async (
 };
 
 export const fetchAllUsers = () => fetchUsers({ __example: 'all' });
-
-export const fetchUsersByDepartment = (department: string) =>
-  fetchUsers({ __example: department });
-
-export const fetchDynamicUsers = () => fetchUsers({ __dynamic: true });
-
-export const fetchUsersError = () =>
-  fetchUsers({ __code: 500, __dynamic: true });

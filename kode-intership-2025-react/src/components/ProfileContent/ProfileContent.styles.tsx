@@ -1,4 +1,3 @@
-import { ImgHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -26,11 +25,6 @@ export const ContentWrapper = styled.div<{
     border-bottom: 1px solid #f7f7f8;
   }
 `;
-
-export const Icon = styled.img.attrs<ImgHTMLAttributes<HTMLImageElement>>({
-  width: 20,
-  height: 20,
-})``;
 
 export const InfoContainer = styled.div`
   width: fit-content;
