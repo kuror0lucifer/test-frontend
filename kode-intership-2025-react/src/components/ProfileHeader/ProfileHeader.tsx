@@ -3,7 +3,7 @@ import { Avatar, Wrapper } from './ProfileHeader.styles';
 import { UserContentContainer, UserNameContainer, UserText } from '../UserCard';
 import { Button } from '../Button';
 import blankAvatar from '../../constants/blankAvatar';
-import { departments } from '../../types/departments';
+import { departments } from '../../types/departments.type';
 import { useNavigate } from 'react-router-dom';
 import formatDepartmentsEN from '../../utils/formatDepartmentsEN';
 import { useTranslation } from 'react-i18next';

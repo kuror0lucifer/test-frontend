@@ -1,4 +1,4 @@
-import { DepartmentsKeys } from './departments';
+import { DepartmentsKeys } from './departments.type';
 
 interface User {
   id: string;

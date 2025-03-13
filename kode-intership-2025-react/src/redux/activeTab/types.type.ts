@@ -1,4 +1,4 @@
-import { DepartmentsKeys } from './../../types/departments';
+import { DepartmentsKeys } from '../../types/departments.type';
 interface ActiveTabState {
   tab: DepartmentsKeys;
 }
