@@ -14,5 +14,8 @@
   "age_one": "{{count}} год",
   "age_few": "{{count}} года",
   "age_many": "{{count}} лет",
-  "age_other": "{{count}} лет"
+  "age_other": "{{count}} лет",
+  "notFoundMain": "Страница не найдена.",
+  "notFoundAdditional": "Страница не существует. Пожалуйста, перейдите на ",
+  "notFoundLink": "главную."
 }

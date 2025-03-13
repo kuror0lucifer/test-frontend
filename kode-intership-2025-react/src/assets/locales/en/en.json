@@ -11,5 +11,8 @@
   "sorting": "Sorting",
   "alphabetically": "By alphabet",
   "by_birthday": "By birthday",
-  "age": "{{count}} y.o."
+  "age": "{{count}} y.o.",
+  "notFoundMain": "Page not found.",
+  "notFoundAdditional": "The page doesn't exist. Please go to the ",
+  "notFoundLink": "main page."
 }

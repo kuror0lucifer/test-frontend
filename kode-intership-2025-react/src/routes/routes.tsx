@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import { Main } from '../pages/Main/Main';
-import { Profile } from '../pages/Profile/Profile';
+import { Main, NotFound, Profile } from '../pages';
 
 export const AppRoutes: FC = () => {
   return (
@@ -14,6 +13,10 @@ export const AppRoutes: FC = () => {
         <Route
           path='/user/:userId'
           element={<Profile />}
+        />
+        <Route
+          path='*'
+          element={<NotFound />}
         />
       </Routes>
     </Router>
