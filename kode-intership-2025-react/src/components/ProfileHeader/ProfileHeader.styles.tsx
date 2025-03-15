@@ -20,4 +20,6 @@ export const Avatar = styled(UserAvatar).attrs({
   height: 104,
 })`
   border-radius: 64px;
+  box-shadow: 0px 8px 12px 0px rgba(22, 30, 52, 0.08),
+    0px 1px 5px 0px rgba(22, 30, 52, 0.04);
 `;
