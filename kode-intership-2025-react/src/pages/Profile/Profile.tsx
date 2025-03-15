@@ -24,10 +24,10 @@ export const Profile: FC = () => {
   const { theme, toggleTheme } = useTheme();
 
   useLayoutEffect(() => {
-    if (user === null && !isLoading) {
-      setUserData(data.filter((user: User) => user.id === userId));
-    } else {
-      setUserData(user);
+    if (!isLoading) {
+      setUserData(
+        user ?? data.find((user: User) => user.id === userId) ?? null
+      );
     }
   }, [data, user, userId, isLoading]);
 
@@ -38,44 +38,17 @@ export const Profile: FC = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (user?.birthday) {
-      const date = formatDate(user.birthday, i18n.language);
-      const calculatedAge = ageCalculator(user.birthday);
+    if (userData?.birthday) {
+      const date = formatDate(userData.birthday, i18n.language);
+      const calculatedAge = ageCalculator(userData.birthday);
       setBirthday(date);
       setAge(calculatedAge);
     }
-  }, [i18n.language]);
+  }, [userData, i18n.language]);
 
   return (
     userData && (
       <ThemeProvider theme={themes[theme]}>
-        {/* <ProfileHeader
-          fullName={`${user.firstName} ${user.lastName}`}
-          avatar={user?.avatarUrl}
-          department={user?.department}
-          nickName={user?.userTag}
-        />
-        <ProfileContent
-          phone={user.phone}
-          birthday={birthday}
-          age={age}
-        />
-        <Button
-          variant='themes'
-          $bottom={40}
-          $right={100}
-          $position='fixed'
-          onClick={toggleTheme}
-          themeMode={theme}
-        />
-        <Button
-          variant='translate'
-          $bottom={40}
-          $right={40}
-          $position='fixed'
-          lang={i18n.language}
-          onClick={() => toggleLang()}
-        /> */}
         <ProfileHeader
           fullName={`${userData.firstName} ${userData.lastName}`}
           avatar={userData.avatarUrl}

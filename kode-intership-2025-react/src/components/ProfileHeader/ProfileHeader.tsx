@@ -34,6 +34,8 @@ export const ProfileHeader: FC<ProfileHeaderProps> = ({
     }
   };
 
+  if (!nickName) return null;
+
   return (
     <Wrapper>
       <Button
