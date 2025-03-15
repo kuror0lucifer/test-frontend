@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useLayoutEffect, useState } from 'react';
 import { ProfileHeader } from '../../components/ProfileHeader';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -8,17 +8,28 @@ import formatDate from '../../utils/formatDate';
 import ageCalculator from '../../utils/ageCalculator';
 import { useTranslation } from 'react-i18next';
 import { Button } from '../../components/Button';
-import { useTheme } from '../../hooks';
+import { useTheme, useUsersData } from '../../hooks';
 import themes from '../../constants/themes';
 import { ThemeProvider } from 'styled-components';
+import User from '../../types/user.type';
 
 export const Profile: FC = () => {
   const [birthday, setBirthday] = useState<string>('');
   const [age, setAge] = useState<number>(0);
+  const [userData, setUserData] = useState<User | null>(null);
   const { userId } = useParams();
   const user = useSelector(selectUserById(userId));
   const { i18n } = useTranslation();
+  const { data, isLoading } = useUsersData();
   const { theme, toggleTheme } = useTheme();
+
+  useLayoutEffect(() => {
+    if (user === null && !isLoading) {
+      setUserData(data.filter((user: User) => user.id === userId));
+    } else {
+      setUserData(user);
+    }
+  }, [data, user, userId, isLoading]);
 
   const toggleLang = () => {
     const newLang = i18n.language === 'ru' ? 'en' : 'ru';
@@ -36,9 +47,9 @@ export const Profile: FC = () => {
   }, [i18n.language]);
 
   return (
-    user && (
+    userData && (
       <ThemeProvider theme={themes[theme]}>
-        <ProfileHeader
+        {/* <ProfileHeader
           fullName={`${user.firstName} ${user.lastName}`}
           avatar={user?.avatarUrl}
           department={user?.department}
@@ -46,6 +57,33 @@ export const Profile: FC = () => {
         />
         <ProfileContent
           phone={user.phone}
+          birthday={birthday}
+          age={age}
+        />
+        <Button
+          variant='themes'
+          $bottom={40}
+          $right={100}
+          $position='fixed'
+          onClick={toggleTheme}
+          themeMode={theme}
+        />
+        <Button
+          variant='translate'
+          $bottom={40}
+          $right={40}
+          $position='fixed'
+          lang={i18n.language}
+          onClick={() => toggleLang()}
+        /> */}
+        <ProfileHeader
+          fullName={`${userData.firstName} ${userData.lastName}`}
+          avatar={userData.avatarUrl}
+          department={userData.department}
+          nickName={userData.userTag}
+        />
+        <ProfileContent
+          phone={userData.phone}
           birthday={birthday}
           age={age}
         />

@@ -53,6 +53,7 @@ export const useUsersData = () => {
   }, [users, activeTab, currentSorting]);
 
   return {
+    data,
     filteredUsers,
     error,
     isLoading,
