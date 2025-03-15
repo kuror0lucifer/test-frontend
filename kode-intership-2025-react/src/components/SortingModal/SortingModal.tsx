@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect, MouseEvent } from 'react';
 import ReactDOM from 'react-dom';
 import {
   InputContent,
@@ -24,9 +24,18 @@ export const SortingModal: FC<Partial<SortingModalProps>> = ({
   const dispatch = useDispatch();
   const currentSorting = useSelector(selectCurrentSorting);
 
-  if (!isOpen) return null;
+  useEffect(() => {
+    const handleEscClick = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && onClose) {
+        onClose();
+      }
+    };
 
-  const handleWrapperClick = (e: React.MouseEvent) => {
+    document.addEventListener('keyup', handleEscClick);
+    return () => document.removeEventListener('keyup', handleEscClick);
+  }, [onClose]);
+
+  const handleWrapperClick = (e: MouseEvent) => {
     if (e.target === e.currentTarget && onClose) {
       onClose();
     }
