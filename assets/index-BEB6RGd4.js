@@ -608,6 +608,8 @@ Please change the parent <Route path="${R}"> to <Route path="${R==="/"?"*":`${R}
   transition: background-color 0.3s ease-in-out;
 `,P7=ve(T2).attrs({width:104,height:104})`
   border-radius: 64px;
+  box-shadow: 0px 8px 12px 0px rgba(22, 30, 52, 0.08),
+    0px 1px 5px 0px rgba(22, 30, 52, 0.04);
 `,V7=({fullName:e,avatar:n,department:a,nickName:i})=>{const u=$g(),[o,f]=L.useState(null),{i18n:h}=_n();L.useEffect(()=>{const m=new Image;m.src=n,m.onload=()=>f(n),m.onerror=()=>f(Pl)},[n]);const g=()=>{window.history.length>1?u(-1):u("/",{replace:!0})};return B.jsxs(F7,{children:[B.jsx(va,{$position:"absolute",$top:24,$left:24,variant:"back",onClick:g}),B.jsx(P7,{src:o||Pl,alt:e}),B.jsxs(C2,{$gap:12,$alignItems:"center",children:[B.jsxs(R2,{children:[B.jsx(ss,{fontSize:24,fontWeight:700,$lineHeight:28,children:e}),B.jsx(ss,{fontSize:17,fontWeight:400,$lineHeight:22,color:"#97979B",children:i.toLowerCase()})]}),B.jsx(ss,{fontSize:13,fontWeight:400,$lineHeight:16,color:"#55555C",children:h.language==="en"?am(a):pc[a]})]})]})},Y7=ve.div`
   width: 100%;
   min-height: 100vh;
