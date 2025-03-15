@@ -4,7 +4,7 @@ import { UserContentContainer, UserNameContainer, UserText } from '../UserCard';
 import { Button } from '../Button';
 import blankAvatar from '../../constants/blankAvatar';
 import { departments } from '../../types/departments.type';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import formatDepartmentsEN from '../../utils/formatDepartmentsEN';
 import { useTranslation } from 'react-i18next';
 import { ProfileHeaderProps } from './props.type';
@@ -16,6 +16,7 @@ export const ProfileHeader: FC<ProfileHeaderProps> = ({
   nickName,
 }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [imgSrc, setImgSrc] = useState<string | null>(null);
   const { i18n } = useTranslation();
 
@@ -27,14 +28,12 @@ export const ProfileHeader: FC<ProfileHeaderProps> = ({
   }, [avatar]);
 
   const handleClickBack = () => {
-    if (window.history.length > 1) {
+    if (location.key !== 'default') {
       navigate(-1);
     } else {
-      navigate('/', { replace: true });
+      navigate('/');
     }
   };
-
-  if (!nickName) return null;
 
   return (
     <Wrapper>
