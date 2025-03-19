@@ -22,16 +22,16 @@ export const SkeletonContentContainer = styled.div`
 export const Skeleton = styled.div<{
   width: number;
   height: number;
-  baseColor: string;
-  highlightColor: string;
-  borderRadius: string;
+  $baseColor: string;
+  $highlightColor: string;
+  $borderRadius: string;
 }>`
   position: relative;
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
-  border-radius: ${({ borderRadius }) => borderRadius};
+  border-radius: ${({ $borderRadius }) => $borderRadius};
   overflow: hidden;
-  background: ${({ baseColor }) => baseColor};
+  background: ${({ $baseColor }) => $baseColor};
 
   &::after {
     content: '';
@@ -42,9 +42,9 @@ export const Skeleton = styled.div<{
     height: 100%;
     background: linear-gradient(
       90deg,
-      ${({ baseColor }) => baseColor} 25%,
-      ${({ highlightColor }) => highlightColor} 50%,
-      ${({ baseColor }) => baseColor} 75%
+      ${({ $baseColor }) => $baseColor} 25%,
+      ${({ $highlightColor }) => $highlightColor} 50%,
+      ${({ $baseColor }) => $baseColor} 75%
     );
     animation: shimmer 1.5s infinite linear;
   }
