@@ -128,7 +128,6 @@
 - React Router
 - Redux Toolkit
 - Redux Persist
-- React Loading Skeleton
 - React Query
 - React Hook Form
 - React-scan (Для отслеживания перерисовки компонентов)
