@@ -1,11 +1,11 @@
 import { FC } from 'react';
-import { TopBarApp } from '../../components/TopBarApp';
-import { MainContent } from '../../components/MainContent';
-import { Button } from '../../components/Button';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../../hooks';
 import { ThemeProvider } from 'styled-components';
 import themes from '../../constants/themes';
+import { TopBarApp } from '../../components/layouts/TopBarApp';
+import { MainContent } from '../../components/layouts/MainContent';
+import { Button } from '../../components/ui/Button';
 
 export const Main: FC = () => {
   const { theme, toggleTheme } = useTheme();

@@ -1,11 +1,11 @@
 import { FC, useEffect, useRef, useState, WheelEvent } from 'react';
 import { TabsContent, TabsWrapper } from './DepartmentTabs.styles';
-import { departments, DepartmentsKeys } from '../../types/departments.type';
 import { useDispatch, useSelector } from 'react-redux';
-import { setActiveTab } from '../../redux/activeTab/slice';
-import { selectActiveTab } from '../../redux/activeTab/selectors';
 import { useTranslation } from 'react-i18next';
-import formatDepartmentsEN from '../../utils/formatDepartmentsEN';
+import { selectActiveTab } from '../../../redux/activeTab/selectors';
+import { departments, DepartmentsKeys } from '../../../types/departments.type';
+import { setActiveTab } from '../../../redux/activeTab/slice';
+import formatDepartmentsEN from '../../../utils/formatDepartmentsEN';
 
 export const DepartmentTabs: FC = () => {
   const scrollRef = useRef<HTMLUListElement | null>(null);

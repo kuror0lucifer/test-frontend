@@ -4,10 +4,10 @@ import {
   TopBarAppText,
   TopBarAppTitle,
 } from './TopBarApp.styles';
-import { Search } from '../Search';
-import { DepartmentTabs } from '../DepartmentTabs';
 import { useTranslation } from 'react-i18next';
-import { useOnlineStatus, usePrevious } from '../../hooks';
+import { useOnlineStatus, usePrevious } from '../../../hooks';
+import { DepartmentTabs } from '../../features/DepartmentTabs';
+import { Search } from '../../features/Search';
 
 export const TopBarApp: FC = () => {
   const { t } = useTranslation();

@@ -1,13 +1,17 @@
 import { FC, useEffect, useState } from 'react';
 import { Avatar, Wrapper } from './ProfileHeader.styles';
-import { UserContentContainer, UserNameContainer, UserText } from '../UserCard';
-import { Button } from '../Button';
-import blankAvatar from '../../constants/blankAvatar';
-import { departments } from '../../types/departments.type';
 import { useLocation, useNavigate } from 'react-router-dom';
-import formatDepartmentsEN from '../../utils/formatDepartmentsEN';
 import { useTranslation } from 'react-i18next';
 import { ProfileHeaderProps } from './props.type';
+import blankAvatar from '../../../constants/blankAvatar';
+import { Button } from '../../ui/Button';
+import {
+  UserContentContainer,
+  UserNameContainer,
+  UserText,
+} from '../../ui/UserCard';
+import formatDepartmentsEN from '../../../utils/formatDepartmentsEN';
+import { departments } from '../../../types/departments.type';
 
 export const ProfileHeader: FC<ProfileHeaderProps> = ({
   fullName,

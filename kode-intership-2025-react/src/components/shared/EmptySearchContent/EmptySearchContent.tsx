@@ -6,8 +6,8 @@ import {
   EmptySearchMessage,
   Icon,
 } from './EmptySearchContent.styles';
-import baseUrl from '../../constants/baseUrl';
 import { useTranslation } from 'react-i18next';
+import baseUrl from '../../../constants/baseUrl';
 
 export const EmptySearchContent: FC = () => {
   const { t } = useTranslation();

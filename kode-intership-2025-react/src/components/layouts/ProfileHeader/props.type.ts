@@ -1,4 +1,4 @@
-import { DepartmentsKeys } from '../../types/departments.type';
+import { DepartmentsKeys } from '../../../types/departments.type';
 
 export interface ProfileHeaderProps {
   fullName: string;

@@ -6,9 +6,9 @@ import {
   ErrorText,
   Icon,
 } from './Error.styles';
-import baseUrl from '../../constants/baseUrl';
 import { useTranslation } from 'react-i18next';
 import { ErrorProps } from './props.type';
+import baseUrl from '../../../constants/baseUrl';
 
 export const Error: FC<Partial<ErrorProps>> = ({ onRetry }) => {
   const { t } = useTranslation();

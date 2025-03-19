@@ -5,9 +5,9 @@ import {
   InfoText,
   Wrapper,
 } from './ProfileContent.styles';
-import formatPhone from '../../utils/formatPhone';
+import formatPhone from '../../../utils/formatPhone';
 import { useTranslation } from 'react-i18next';
-import { PhoneIcon, StarIcon } from '../Icons';
+import { PhoneIcon, StarIcon } from '../../ui/Icons';
 import { ProfileContentProps } from './props.type';
 
 export const ProfileContent: FC<ProfileContentProps> = ({

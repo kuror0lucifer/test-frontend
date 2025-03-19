@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes } from 'react';
-import ThemeType from '../../types/theme.type';
+import ThemeType from '../../../types/theme.type';
 
 export interface StyleProps {
   $position: string;

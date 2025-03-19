@@ -7,11 +7,11 @@ import {
   UserText,
   UserWrapper,
 } from './UserCard.styles';
-import { departments } from '../../types/departments.type';
-import blankAvatar from '../../constants/blankAvatar';
 import { useTranslation } from 'react-i18next';
-import formatDepartmentsEN from '../../utils/formatDepartmentsEN';
 import { UserCardProps } from './props.type';
+import blankAvatar from '../../../constants/blankAvatar';
+import formatDepartmentsEN from '../../../utils/formatDepartmentsEN';
+import { departments } from '../../../types/departments.type';
 
 export const UserCard: FC<UserCardProps> = ({
   id,

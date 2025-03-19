@@ -1,15 +1,15 @@
 import { FC, useCallback, useEffect, useState } from 'react';
 import { Input, SearchContainer, SearchWrapper } from './Search.styles';
-import { SortingModal } from '../SortingModal';
+import { SortingModal } from '../../ui/SortingModal';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSorting } from '../../redux/sorting/slice';
-import { selectCurrentSorting } from '../../redux/sorting/selectors';
+import { setSorting } from '../../../redux/sorting/slice';
+import { selectCurrentSorting } from '../../../redux/sorting/selectors';
 import { useTranslation } from 'react-i18next';
-import { SearchGlass } from '../Icons';
-import { SortingIcon } from '../Icons';
+import { SearchGlass } from '../../ui/Icons';
+import { SortingIcon } from '../../ui/Icons';
 import { IFormInputs } from './props.type';
-import { useSearch } from '../../hooks';
+import { useSearch } from '../../../hooks';
 
 export const Search: FC = () => {
   const { register, setValue, watch } = useForm<IFormInputs>();

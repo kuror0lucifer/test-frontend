@@ -1,17 +1,17 @@
 import { FC, useEffect, useLayoutEffect, useState } from 'react';
-import { ProfileHeader } from '../../components/ProfileHeader';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectUserById } from '../../redux/users/selectors';
-import { ProfileContent } from '../../components/ProfileContent';
+import { ProfileContent } from '../../components/layouts/ProfileContent';
 import formatDate from '../../utils/formatDate';
 import ageCalculator from '../../utils/ageCalculator';
 import { useTranslation } from 'react-i18next';
-import { Button } from '../../components/Button';
 import { useTheme, useUsersData } from '../../hooks';
 import themes from '../../constants/themes';
 import { ThemeProvider } from 'styled-components';
 import User from '../../types/user.type';
+import { ProfileHeader } from '../../components/layouts/ProfileHeader';
+import { Button } from '../../components/ui/Button';
 
 export const Profile: FC = () => {
   const [birthday, setBirthday] = useState<string>('');

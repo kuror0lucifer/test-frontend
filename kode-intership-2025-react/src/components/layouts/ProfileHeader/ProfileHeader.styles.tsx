@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { UserAvatar } from '../UserCard';
+import { UserAvatar } from '../../ui/UserCard';
 
 export const Wrapper = styled.div`
   position: relative;

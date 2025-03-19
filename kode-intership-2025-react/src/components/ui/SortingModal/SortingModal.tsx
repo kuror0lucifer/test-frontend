@@ -11,8 +11,8 @@ import {
 } from './SortingModal.styles';
 import { Button } from '../Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectCurrentSorting } from '../../redux/sorting/selectors';
-import { setSorting } from '../../redux/sorting/slice';
+import { selectCurrentSorting } from '../../../redux/sorting/selectors';
+import { setSorting } from '../../../redux/sorting/slice';
 import { useTranslation } from 'react-i18next';
 import { SortingModalProps } from './props.type';
 

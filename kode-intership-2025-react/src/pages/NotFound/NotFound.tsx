@@ -6,11 +6,11 @@ import {
   Wrapper,
 } from './NotFound.styles';
 import { useTranslation } from 'react-i18next';
-import { Button } from '../../components/Button';
 import { ThemeProvider } from 'styled-components';
 import { useTheme } from '../../hooks';
 import themes from '../../constants/themes';
 import { TbError404 } from 'react-icons/tb';
+import { Button } from '../../components/ui/Button';
 
 export const NotFound: FC = () => {
   const { i18n, t } = useTranslation();

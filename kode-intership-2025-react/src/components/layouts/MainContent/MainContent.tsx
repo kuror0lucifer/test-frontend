@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import { ContentWrapper } from './MainContent.styles';
-import { ContentSkeleton } from '../ContentSkeleton';
-import User from '../../types/user.type';
-import { UserCard } from '../UserCard';
-import { EmptySearchContent } from '../EmptySearchContent';
-import { Error } from '../Error';
-import { BirthdaySeparator } from '../BirthdaySeparator';
-import { useUsersData } from '../../hooks';
+import { useUsersData } from '../../../hooks';
+import User from '../../../types/user.type';
+import { UserCard } from '../../ui/UserCard';
+import { ContentSkeleton } from '../../shared/ContentSkeleton';
+import { Error } from '../../shared/Error';
+import { EmptySearchContent } from '../../shared/EmptySearchContent';
+import { BirthdaySeparator } from '../../features/BirthdaySeparator';
 
 export const MainContent: FC = () => {
   const {
