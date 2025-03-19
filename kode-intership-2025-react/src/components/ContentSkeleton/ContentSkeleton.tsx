@@ -1,7 +1,6 @@
 import { FC } from 'react';
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
 import {
+  Skeleton,
   SkeletonContentContainer,
   SkeletonWrapper,
 } from './ContentSkeleton.styles';
@@ -10,7 +9,7 @@ export const ContentSkeleton: FC = () => {
   return (
     <SkeletonWrapper>
       <Skeleton
-        circle
+        borderRadius='50%'
         width={72}
         height={72}
         baseColor='#F3F3F6'
@@ -20,14 +19,14 @@ export const ContentSkeleton: FC = () => {
         <Skeleton
           width={144}
           height={16}
-          borderRadius={50}
+          borderRadius='50px'
           baseColor='#F3F3F6'
           highlightColor='#FAFAFA'
         />
         <Skeleton
           width={80}
           height={12}
-          borderRadius={50}
+          borderRadius='50px'
           baseColor='#F3F3F6'
           highlightColor='#FAFAFA'
         />
